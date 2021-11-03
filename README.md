@@ -34,5 +34,5 @@ To be used with `8x8.vc` domain as-it-is in React projects:
 />
 ```
 
-### Samples
+## Samples
 Install and run the projects from the `examples` directory to see the modules in action.
