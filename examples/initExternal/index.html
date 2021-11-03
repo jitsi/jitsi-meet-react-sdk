@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>InitExternal Demo</title>
+    <script type="text/javascript">
+      window.onload = () => {
+        const api = new window.JitsiMeetExternalAPI("meet.jit.si", {
+          roomName: "ExternalAPIInitModuleDemo",
+          height: 700,
+          parentNode: document.getElementById('jitsi-meeting-container')
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <h1 style="font-family: sans-serif; text-align: center;">External API Init Demo App</h1>
+    <div id="jitsi-meeting-container" />
+  </body>
+</html>

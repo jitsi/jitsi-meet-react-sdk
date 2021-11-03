@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JaaSMeeting component should render correctly 1`] = `
+<JitsiMeeting
+  domain="8x8.vc"
+  id="testingRender"
+  onApiReady={[Function]}
+  options={
+    Object {
+      "height": "700px",
+      "roomName": "DefaultRoomNameExample",
+      "width": "100%",
+    }
+  }
+  tenant="testAppId"
+/>
+`;
