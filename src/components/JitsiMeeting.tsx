@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { initExternalApi } from '..';
 import { IJitsiMeetingProps } from '../types';
@@ -55,7 +55,7 @@ const JitsiMeeting = ({
     });
   }, []);
 
-  const loadIFrame = (JitsiMeetExternalAPI: any) => {
+  const loadIFrame = useCallback((JitsiMeetExternalAPI: any) => {
     apiRef.current = new JitsiMeetExternalAPI.fn(domain, {
       roomName,
       width,
@@ -74,7 +74,23 @@ const JitsiMeeting = ({
       onApiReady(apiRef.current);
       (getIFrameRef && meetingRef.current) && getIFrameRef(meetingRef.current);
     }
-  };
+  }, [
+    apiRef,
+    meetingRef,
+    onApiReady,
+    getIFrameRef,
+    domain,
+    roomName,
+    width,
+    height,
+    configOverwrite,
+    interfaceConfigOverwrite,
+    jwt,
+    onload,
+    invitees,
+    devices,
+    userInfo
+  ]);
 
   useEffect(() => {
     if (jitsiClass && !apiRef.current) {
@@ -82,7 +98,7 @@ const JitsiMeeting = ({
     }
   }, [jitsiClass, loadIFrame]);
 
-  const renderLoadingSpinner = () => {
+  const renderLoadingSpinner = useCallback(() => {
     if (!spinner) {
       return null;
     }
@@ -91,7 +107,7 @@ const JitsiMeeting = ({
     }
     const Spinner = spinner;
     return <Spinner />;
-  };
+  }, [spinner]);
 
   return (
     <>
