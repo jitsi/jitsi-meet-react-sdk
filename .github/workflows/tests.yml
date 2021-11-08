@@ -1,0 +1,19 @@
+name: Jitsi Meet Web SDK CI
+on: pull_request
+jobs:
+  run-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          node-version: '16.x'
+      - run: npm ci
+      - name: Check git status
+        run: git status
+      - name: Check git diff
+        run: git diff
+      - name: Check if the git repository is clean
+        run: exit $( git status --porcelain --untracked-files=no | head -255 | wc -l )
+      - run: npm run lint
+      - name: Run unit tests
+        run: npm test
