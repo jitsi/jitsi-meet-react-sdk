@@ -40,6 +40,17 @@ const App = () => {
     });
   };
 
+  const handleJitsiIFrameRef = (iframeRef) => {
+    iframeRef.style.border = '10px solid cadetblue';
+    iframeRef.style.background = 'cadetblue';
+  };
+
+  const handleJaasIFrameRef = (iframeRef) => {
+    iframeRef.style.marginTop = '10px';
+    iframeRef.style.border = '10px dashed tomato';
+    iframeRef.style.padding = '5px';
+  };
+
   const handleApiReady = (apiObj, ref) => {
     ref.current = apiObj;
     ref.current.addEventListeners({
@@ -113,6 +124,7 @@ const App = () => {
         height='400px'
         spinner={renderSpinner}
         onApiReady={(externalApi) => handleApiReady(externalApi, apiRef)}
+        getIFrameRef={handleJitsiIFrameRef}
       />
       <JaaSMeeting
         appId="test"
@@ -121,6 +133,7 @@ const App = () => {
         height='400px'
         spinner={renderSpinner}
         onApiReady={(externalApi) => handleApiReady(externalApi, apiRef)}
+        getIFrameRef={handleJaasIFrameRef}
       />
       {renderButtons()}
       {renderNewComp()}

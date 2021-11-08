@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MutableRefObject } from 'react';
 
 /* eslint-disable-next-line */
 import { JitsiMeeting } from '..';
@@ -102,4 +102,9 @@ export default interface IJitsiMeetingProps {
    * The external API reference for events and commands.
    */
   onApiReady: (api: IJitsiMeetExternalApi) => void;
+
+  /**
+   * The reference to the div used by the IFrame.
+   */
+  getIFrameRef?: (ref: MutableRefObject<HTMLElement>) => void;
 };

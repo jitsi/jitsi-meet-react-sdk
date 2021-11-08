@@ -36,6 +36,7 @@ const JitsiMeeting = ({
   userInfo,
   spinner,
   onApiReady,
+  getIFrameRef
 }: IJitsiMeetingProps) => {
   const [componentId] = useState(generateComponentId('jitsiMeeting'));
   const apiRef = useRef();
@@ -71,6 +72,7 @@ const JitsiMeeting = ({
     setLoading(false);
     if (apiRef.current) {
       onApiReady(apiRef.current);
+      (getIFrameRef && meetingRef.current) && getIFrameRef(meetingRef.current);
     }
   };
 
