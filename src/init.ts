@@ -1,15 +1,17 @@
-import { JaaS_DOMAIN } from "./constants";
+import { DEFAULT_DOMAIN, JAAS_DOMAIN } from './constants';
+import IJitsiMeetExternalApi from './types/IJitsiMeetExternalApi';
 
-type ExternalApiMap = {
-  [key: string]: {
-    fn?: any;
-    isLoaded: boolean;
-    callbacks: ((err: Error | null, jitsiClass?: any) => void)[];
-    err: Error | null;
-  };
+type ExternalApi = {
+  isLoaded: boolean;
+  callbacks: ((err: Error | null, jitsiClass?: ExternalApiWrapper) => void)[];
+  err: Error | null;
 };
 
-const externalApiMap: ExternalApiMap = {};
+type ExternalApiWrapper = {
+  fn: IJitsiMeetExternalApi;
+};
+
+let externalApi: ExternalApi;
 
 /**
  * Injects the external_api.js script for the corresponding domain in DOM
@@ -20,9 +22,9 @@ const externalApiMap: ExternalApiMap = {};
  * @returns {Promise<object>} - Object containing the JitsiMeetExternalAPI object
  * or an error
  */
-export const initExternal = (domain: string = JaaS_DOMAIN): Promise<void> =>
+export const fetchExternalApi = (domain: string = JAAS_DOMAIN): Promise<void | ExternalApiWrapper> =>
   new Promise((resolve, reject) => {
-    init(domain, (error: Error | null, jitsiClass?: any): void => {
+    initExternalApi(domain, (error: Error | null, jitsiClass?: ExternalApiWrapper): void => {
       if (error) {
         reject(error);
       }
@@ -30,56 +32,55 @@ export const initExternal = (domain: string = JaaS_DOMAIN): Promise<void> =>
     });
   });
 
-export const init = (
-  domain: string,
-  callback: (err: Error | null, jitsiClass?: any) => void
+export const initExternalApi = (
+  domain: string = DEFAULT_DOMAIN,
+  callback: (err: Error | null, jitsiClass?: ExternalApiWrapper) => void
 ): void => {
-  if (!externalApiMap[domain]) {
-    externalApiMap[domain] = {
+  if (!externalApi) {
+    externalApi = {
       isLoaded: false,
       callbacks: [callback],
       err: null,
     };
-    const script: HTMLScriptElement = document.createElement("script");
+    const script: HTMLScriptElement = document.createElement('script');
     script.async = true;
     script.src = `https://${domain}/external_api.js`;
     script.onload = () => {
-      externalApiMap[domain].isLoaded = true;
-      externalApiMap[domain].fn = window.JitsiMeetExternalAPI.bind({});
-      const callbacks = externalApiMap[domain].callbacks;
+      externalApi.isLoaded = true;
+      const callbacks = externalApi.callbacks;
       if (callbacks) {
         callbacks.forEach((cb) => {
           // cb can be `setJitsiClass` when called from component
-          // or the `resolve` function when from initExternal
-          cb(null, { fn: externalApiMap[domain].fn });
+          // or the `resolve` function when from fetchExternalApi
+          cb(null, { fn: window.JitsiMeetExternalAPI });
         });
       }
     };
     script.onerror = () => {
-      externalApiMap[domain].isLoaded = true;
-      externalApiMap[domain].err = new Error(
+      externalApi.isLoaded = true;
+      externalApi.err = new Error(
         `Script load error: ${script.src}`
       );
-      const callbacks = externalApiMap[domain].callbacks;
+      const callbacks = externalApi.callbacks;
       if (callbacks && callbacks.length) {
         callbacks.forEach((cb) => {
           // cb can be `setJitsiClass` when called from component
-          // or the `resolve` function when from initExternal
-          cb(externalApiMap[domain].err);
+          // or the `resolve` function when from fetchExternalApi
+          cb(externalApi.err);
         });
       }
     };
 
     document.head.appendChild(script as Node);
   } else {
-    if (externalApiMap[domain].isLoaded) {
-      if (externalApiMap[domain].err) {
-        callback(externalApiMap[domain].err);
+    if (externalApi.isLoaded) {
+      if (externalApi.err) {
+        callback(externalApi.err);
       } else {
-        callback(null, { fn: externalApiMap[domain].fn });
+        callback(null, { fn: window.JitsiMeetExternalAPI });
       }
     } else {
-      externalApiMap[domain].callbacks.push(callback);
+      externalApi.callbacks.push(callback);
     }
   }
 };

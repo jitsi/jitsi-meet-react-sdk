@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "module": "commonjs",
+    "module": "es6",
     "declaration": true,
     "outDir": "./lib",
     "strict": true,
@@ -14,7 +14,7 @@
   ],
   "exclude": [
     "node_modules",
-    "**/__tests__/*",
+    "**/__tests__",
     "examples"
   ]
 }

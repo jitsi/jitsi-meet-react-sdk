@@ -1,43 +1,38 @@
-import { JitsiMeeting } from ".";
-import { JaaS_DOMAIN } from "../constants";
-import { IJaaSMeetingProps } from "../types";
+import { JitsiMeeting } from '.';
+import { JAAS_DOMAIN } from '../constants';
+import { IJaaSMeetingProps } from '../types';
+import { getRoomName } from '../utils';
 
 /**
  * Returns the JaaSMeeting Component with access to the 8x8.vc External API
  * to be used as-it-is in React projects
  *
- * @param {IJitsiMeetingProps} props
+ * @param {IJitsiMeetingProps} props the component's props
+ * @returns {React.Component} the `JaaSMeeting` Component
  * @example
   ```js
       <JaaSMeeting
-        id="testId"
-        options={{
-          roomName: 'TestingJaaSMeetingComponent'
-          width: '100%'
-          height: '500px'
-        }}
-        appId="exampleAppId"
-        spinner={() => <>loading jaas meeting...</>}
+        roomName: 'TestingJaaSMeetingComponent'
+        width: '100%'
+        height: 500
+        appId='exampleAppId'
+        spinner={CustomSpinner}
         onApiReady={(externalApi) => console.log(externalApi)}
       />
   ```
  */
 const JaaSMeeting = ({
-  id,
-  options,
   appId,
-  spinner,
-  onApiReady
+  roomName,
+  ...rest
 }: IJaaSMeetingProps) => {
-  const props = {
-    id,
-    domain: JaaS_DOMAIN,
-    tenant: appId,
-    options,
-    spinner,
-    onApiReady
-  };
-  return <JitsiMeeting {...props} />;
+  return (
+    <JitsiMeeting
+      domain={JAAS_DOMAIN}
+      roomName={getRoomName(appId, roomName)}
+      {...rest}
+    />
+  );
 };
 
 export default JaaSMeeting;

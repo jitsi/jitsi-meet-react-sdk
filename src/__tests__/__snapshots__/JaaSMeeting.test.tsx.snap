@@ -1,17 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`JaaSMeeting component should render correctly 1`] = `
-<JitsiMeeting
-  domain="8x8.vc"
-  id="testingRender"
+<JaaSMeeting
+  appId="testAppId"
+  height="700px"
   onApiReady={[Function]}
-  options={
-    Object {
-      "height": "700px",
-      "roomName": "DefaultRoomNameExample",
-      "width": "100%",
-    }
-  }
-  tenant="testAppId"
-/>
+  roomName="DefaultRoomNameExample"
+  width="100%"
+>
+  <JitsiMeeting
+    domain="8x8.vc"
+    height="700px"
+    onApiReady={[Function]}
+    roomName="testAppId/DefaultRoomNameExample"
+    width="100%"
+  >
+    <div
+      id="test"
+      key="test"
+    />
+  </JitsiMeeting>
+</JaaSMeeting>
 `;

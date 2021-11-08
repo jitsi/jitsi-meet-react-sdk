@@ -1,16 +1,15 @@
 {
-  "name": "jitsi-meet-web-sdk",
+  "name": "@jitsi/web-sdk",
   "version": "0.0.0",
   "description": "Web SDK for the Jitsi Meet IFrame",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "eslint -c .eslintrc.js --ext .ts \"src\"",
-    "postversion": "git push && git push --tags",
+    "lint-fix": "eslint --fix \"src\"",
     "test": "jest --config jestconfig.json",
-    "version": "npm run format && git add -A src"
+    "version": "npm run lint-fix && git add -A src"
   },
   "repository": {
     "type": "git",
@@ -46,7 +45,7 @@
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jest": "^25.2.2",
-    "eslint-plugin-jsdoc": "^37.0.0",
+    "eslint-plugin-jsdoc": "^37.0.3",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-react": "^7.26.1",
     "jest": "^27.3.1",

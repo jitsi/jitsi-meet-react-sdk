@@ -3,29 +3,32 @@ import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import { JitsiMeeting } from '../index';
 import { DEFAULT_DOMAIN, DEFAULT_OPTIONS } from '../constants';
+import { IJitsiMeetExternalApi } from '../types';
 
 describe('JitsiMeeting component', () => {
-
   it('should render correctly', () => {
     const props = {
-      id: "testingRender",
+      ...DEFAULT_OPTIONS,
       domain: DEFAULT_DOMAIN,
-      options: DEFAULT_OPTIONS,
-      onApiReady: () => { return {}; }
+      onApiReady: (externalApi: IJitsiMeetExternalApi) => { console.log(externalApi); }
     };
+
     const wrapper = shallow(<JitsiMeeting {...props} />);
-    expect(toJson(wrapper)).toMatchSnapshot();
+    const snapshot = toJson(wrapper);
+    // Overwrite non-deterministic fields
+    snapshot.children[0].props.id = 'test';
+    snapshot.children[0].props.key = 'test';
+    expect(snapshot).toMatchSnapshot();
   });
 
   it('should render iframe', () => {
     const props = {
-      id: "testingForIframe",
+      ...DEFAULT_OPTIONS,
       domain: DEFAULT_DOMAIN,
-      options: DEFAULT_OPTIONS,
-      onApiReady: () => { return {}; }
+      onApiReady: (externalApi: IJitsiMeetExternalApi) => { console.log(externalApi); }
     };
     const wrapper = shallow(<JitsiMeeting {...props} />);
-    const iframe = wrapper.find("iframe");
+    const iframe = wrapper.find('iframe');
     expect(iframe).toBeTruthy();
   });
 });

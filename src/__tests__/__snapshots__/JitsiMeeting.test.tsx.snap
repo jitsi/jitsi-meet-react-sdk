@@ -3,8 +3,8 @@
 exports[`JitsiMeeting component should render correctly 1`] = `
 <Fragment>
   <div
-    id="testingRender-jitsiMeeting"
-    key="testingRender-jitsiMeeting"
+    id="test"
+    key="test"
   />
 </Fragment>
 `;

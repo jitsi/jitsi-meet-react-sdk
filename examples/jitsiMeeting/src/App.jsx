@@ -1,6 +1,5 @@
-import React, { useRef } from "react";
-import { JitsiMeeting } from 'jitsi-meet-web-sdk';
-import { useState } from "react";
+import React, { useRef, useState } from 'react';
+import { JitsiMeeting, JaaSMeeting } from '@jitsi/web-sdk';
 
 const App = () => {
   const apiRef = useRef();
@@ -61,13 +60,10 @@ const App = () => {
     }
     return (
       <JitsiMeeting
-        id="testNew"
         domain="meet.jit.si"
-        options={{
-          roomName: 'JitsiMeetingComponentDemo',
-          width: '100%',
-          height: '400px'
-        }}
+        roomName='JitsiMeetingComponentDemo'
+        width='100%'
+        height='400px'
         onApiReady={(externalApi) => handleApiReady(externalApi, apiRefNew)}
       />
     );
@@ -111,13 +107,18 @@ const App = () => {
     <>
       <h1 style={{ fontFamily: 'sans-serif', textAlign: 'center' }}>JitsiMeeting Demo App</h1>
       <JitsiMeeting
-        id="demoAppTest"
         domain="meet.jit.si"
-        options={{
-          roomName: 'JitsiMeetingComponentDemo',
-          width: '100%',
-          height: 400
-        }}
+        roomName='JitsiMeetingComponentDemo'
+        width='100%'
+        height='400px'
+        spinner={renderSpinner}
+        onApiReady={(externalApi) => handleApiReady(externalApi, apiRef)}
+      />
+      <JaaSMeeting
+        appId="test"
+        roomName='JaaSMeetingComponentDemo'
+        width='100%'
+        height='400px'
         spinner={renderSpinner}
         onApiReady={(externalApi) => handleApiReady(externalApi, apiRef)}
       />

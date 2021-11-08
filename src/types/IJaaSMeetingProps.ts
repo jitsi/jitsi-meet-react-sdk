@@ -1,15 +1,13 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import IJitsiMeetingOptions from "./IJitsiMeetingOptions";
-import { JaaSMeeting } from "..";
+import React from 'react';
+
+/* eslint-disable-next-line */
+import { JaaSMeeting } from '..';
+import IJitsiMeetExternalApi from './IJitsiMeetExternalApi';
 
 /**
  * The type of the React {@code Component} props of {@link JaaSMeeting}.
  */
 export default interface IJaaSMeetingProps {
-  /**
-   * The id of the component
-   */
-  id: string;
 
   /**
    * The App ID that provides an isolated context and prefixes the room name
@@ -17,17 +15,91 @@ export default interface IJaaSMeetingProps {
   appId: string;
 
   /**
-   * The optional arguments for the conference
+   * The name of the room to join
    */
-  options: IJitsiMeetingOptions;
+  roomName?: string;
+
+  /**
+   * The created IFrame width
+   */
+  width?: string | number;
+
+  /**
+   * The height for the created IFrame
+   */
+  height?: string | number;
+
+  /**
+   * The JS object with overrides for options defined in the config.js file
+   * https://github.com/jitsi/jitsi-meet/blob/master/config.js
+   */
+  configOverwrite?: object;
+
+  /**
+   * The JS object with overrides for options defined in the interface_config.js file
+   * https://github.com/jitsi/jitsi-meet/blob/master/interface_config.js
+   */
+  interfaceConfigOverwrite?: object;
+
+  /**
+   * The JWT token
+   */
+  jwt?: string;
+
+  /**
+   * The IFrame onload event handler
+   */
+  onload?: () => void;
+
+  /**
+   * Object arrays that contain information about participants invited to a call
+   */
+  invitees?: [];
+
+  /**
+   * Information map about the devices used in a call
+   */
+  devices?: {
+
+    /**
+     * The label of the device used for audio input
+     */
+    audioInput: string;
+
+    /**
+     * The label of the device  used for audio output
+     */
+    audioOutput: string;
+
+    /**
+     * The label of the device used for video input
+     */
+    videoInput: string;
+  };
+
+  /**
+   * The JS object that contains information about the participant starting the meeting
+   */
+  userInfo?: {
+
+    /**
+     * The participant display name
+     */
+    displayName: string;
+
+    /**
+     * The participant email address
+     */
+    email: string;
+  };
 
   /**
    * The custom spinner to be displayed while the iframe is loading
    */
-  spinner?: () => JSX.Element;
+  spinner?: React.ElementType;
 
   /**
    * The external API reference for events and commands
    */
-  onApiReady: (api: any) => object;
+  onApiReady: (api: IJitsiMeetExternalApi) => void;
 }

@@ -1,7 +1,7 @@
 {
-  "name": "initexternal_demo",
+  "name": "fetchexternalapi_demo",
   "version": "0.0.0",
-  "description": "Demo project for the loading external API module",
+  "description": "Demo project for the Fetch External API module",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --history-api-fallback --progress"
@@ -10,7 +10,7 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "jitsi-meet-web-sdk": "file:../.."
+    "@jitsi/web-sdk": "file:../.."
   },
   "type": "module",
   "devDependencies": {

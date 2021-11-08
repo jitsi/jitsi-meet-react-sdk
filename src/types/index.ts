@@ -1,9 +1,11 @@
+import { default as IJitsiMeetExternalApi } from './IJitsiMeetExternalApi';
 declare global {
   interface Window {
-    JitsiMeetExternalAPI: () => object;
+    JitsiMeetExternalAPI: IJitsiMeetExternalApi;
   }
 }
 
-export { default as IJitsiMeetingOptions } from "./IJitsiMeetingOptions";
-export { default as IJitsiMeetingProps } from "./IJitsimeetingProps";
-export { default as IJaaSMeetingProps } from "./IJaaSMeetingProps";
+export { default as IJitsiMeetingProps } from './IJitsiMeetingProps';
+export { default as IJaaSMeetingProps } from './IJaaSMeetingProps';
+export { default as IJitsiMeetExternalApi } from './IJitsiMeetExternalApi';
+
