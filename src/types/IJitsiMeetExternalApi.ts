@@ -229,7 +229,7 @@ export default interface IJitsiMeetExternalApi {
    * * For youtube streams, `youtubeStreamKey` must be passed on. `youtubeBroadcastID` is optional.
    * * For dropbox recording, recording `mode` should be `file` and a dropbox oauth2 token must be provided.
    * * For file recording, recording `mode` should be `file` and optionally `shouldShare` could be passed on.
-   * 
+   *
    * No other params should be passed.
    */
   startRecording: (options: {
@@ -275,4 +275,4 @@ export default interface IJitsiMeetExternalApi {
    * Stops a recording or streaming session that is in progress.
    */
   stopRecording: (mode: 'file' | 'stream') => void;
-};
+}

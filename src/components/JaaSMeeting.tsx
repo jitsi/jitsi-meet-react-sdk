@@ -1,7 +1,8 @@
-import { JitsiMeeting } from '.';
 import { JAAS_DOMAIN } from '../constants';
 import { IJaaSMeetingProps } from '../types';
 import { getRoomName } from '../utils';
+
+import { JitsiMeeting } from '.';
 
 /**
  * Returns the JaaSMeeting Component with access to the 8x8.vc External API
@@ -22,17 +23,15 @@ import { getRoomName } from '../utils';
   ```
  */
 const JaaSMeeting = ({
-  appId,
-  roomName,
-  ...rest
-}: IJaaSMeetingProps) => {
-  return (
+    appId,
+    roomName,
+    ...rest
+}: IJaaSMeetingProps) => (
     <JitsiMeeting
-      domain={JAAS_DOMAIN}
-      roomName={getRoomName(appId, roomName)}
-      {...rest}
+        domain={JAAS_DOMAIN}
+        roomName={getRoomName(appId, roomName)}
+        {...rest}
     />
-  );
-};
+);
 
 export default JaaSMeeting;

@@ -107,4 +107,4 @@ export default interface IJitsiMeetingProps {
    * The parent node used by the IFrame.
    */
   getIFrameRef?: (parentNode: HTMLDivElement) => void;
-};
+}

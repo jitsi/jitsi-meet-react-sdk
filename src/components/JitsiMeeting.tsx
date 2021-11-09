@@ -12,73 +12,17 @@ import { generateComponentId } from '../utils';
  * @returns {React.Component} the `JitsiMeeting` Component
  * @example
   ```js
-      <JitsiMeeting
+    <JitsiMeeting
         domain='meet.jit.si'
         roomName: 'TestingJitsiMeetingComponent'
         width: '100%'
         height: 500
         spinner={CustomSpinner}
         onApiReady={(externalApi) => console.log(externalApi)}
-      />
+    />
   ```
  */
 const JitsiMeeting = ({
-  domain,
-  roomName,
-  width,
-  height,
-  configOverwrite,
-  interfaceConfigOverwrite,
-  jwt,
-  onload,
-  invitees,
-  devices,
-  userInfo,
-  spinner: Spinner,
-  onApiReady,
-  getIFrameRef
-}: IJitsiMeetingProps) => {
-  const [componentId] = useState(generateComponentId('jitsiMeeting'));
-  const apiRef = useRef();
-  const meetingRef = useRef<HTMLDivElement>(null);
-  const [loading, setLoading] = useState(true);
-  const [jitsiClass, setJitsiClass] = useState(null);
-
-  useEffect(() => {
-    initExternalApi(domain, (err: Error | null, JitsiClass?: any): void => {
-      if (err) {
-        /* eslint-disable-next-line */
-        console.error(err);
-        return;
-      }
-      setJitsiClass(JitsiClass);
-    });
-  }, []);
-
-  const loadIFrame = useCallback((JitsiMeetExternalAPI: any) => {
-    apiRef.current = new JitsiMeetExternalAPI.fn(domain, {
-      roomName,
-      width,
-      height,
-      configOverwrite,
-      interfaceConfigOverwrite,
-      jwt,
-      onload,
-      invitees,
-      devices,
-      userInfo,
-      parentNode: meetingRef.current
-    });
-    setLoading(false);
-    if (apiRef.current) {
-      onApiReady(apiRef.current);
-      (getIFrameRef && meetingRef.current) && getIFrameRef(meetingRef.current);
-    }
-  }, [
-    apiRef,
-    meetingRef,
-    onApiReady,
-    getIFrameRef,
     domain,
     roomName,
     width,
@@ -89,35 +33,94 @@ const JitsiMeeting = ({
     onload,
     invitees,
     devices,
-    userInfo
-  ]);
+    userInfo,
+    spinner: Spinner,
+    onApiReady,
+    getIFrameRef
+}: IJitsiMeetingProps) => {
+    const [ componentId, setComponentId ] = useState<string>('');
+    const [ loading, setLoading ] = useState(true);
+    const [ externalApi, setExternalApi ] = useState(null);
+    const apiRef = useRef();
+    const meetingRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (jitsiClass && !apiRef.current) {
-      loadIFrame(jitsiClass);
-    }
-  }, [jitsiClass, loadIFrame]);
+    useEffect(() => {
+        setComponentId(generateComponentId('jitsiMeeting'));
+        initExternalApi(domain, (err: Error | null, api?: any): void => {
+            if (err) {
+                /* eslint-disable-next-line */
+                console.error(err);
 
-  const renderLoadingSpinner = useCallback(() => {
-    if (!Spinner) {
-      return null;
-    }
-    if (!loading) {
-      return null;
-    }
-    return <Spinner />;
-  }, [Spinner]);
+                return;
+            }
+            setExternalApi(api);
+        });
+    }, []);
 
-  return (
-    <>
-      {renderLoadingSpinner()}
-      <div
-        id={componentId}
-        key={componentId}
-        ref={meetingRef}
-      />
-    </>
-  );
+    const loadIFrame = useCallback((JitsiMeetExternalAPI: any) => {
+        apiRef.current = new JitsiMeetExternalAPI.Fn(domain, {
+            roomName,
+            width,
+            height,
+            configOverwrite,
+            interfaceConfigOverwrite,
+            jwt,
+            onload,
+            invitees,
+            devices,
+            userInfo,
+            parentNode: meetingRef.current
+        });
+        setLoading(false);
+        if (apiRef.current) {
+            onApiReady(apiRef.current);
+            (getIFrameRef && meetingRef.current) && getIFrameRef(meetingRef.current);
+        }
+    }, [
+        apiRef,
+        meetingRef,
+        onApiReady,
+        getIFrameRef,
+        domain,
+        roomName,
+        width,
+        height,
+        configOverwrite,
+        interfaceConfigOverwrite,
+        jwt,
+        onload,
+        invitees,
+        devices,
+        userInfo
+    ]);
+
+    useEffect(() => {
+        if (externalApi && !apiRef.current) {
+            loadIFrame(externalApi);
+        }
+    }, [ externalApi, loadIFrame ]);
+
+    const renderLoadingSpinner = useCallback(() => {
+        if (!Spinner) {
+            return null;
+        }
+        if (!loading) {
+            return null;
+        }
+
+        return <Spinner />;
+    }, [ Spinner ]);
+
+    return (
+        <>
+            {renderLoadingSpinner()}
+            <div
+                id={componentId}
+                key={componentId}
+                ref={meetingRef}
+            />
+        </>
+    );
 };
 
 export default JitsiMeeting;
