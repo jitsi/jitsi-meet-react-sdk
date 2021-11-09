@@ -34,13 +34,13 @@ const JitsiMeeting = ({
   invitees,
   devices,
   userInfo,
-  spinner,
+  spinner: Spinner,
   onApiReady,
   getIFrameRef
 }: IJitsiMeetingProps) => {
   const [componentId] = useState(generateComponentId('jitsiMeeting'));
   const apiRef = useRef();
-  const meetingRef = useRef(null);
+  const meetingRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(true);
   const [jitsiClass, setJitsiClass] = useState(null);
 
@@ -99,15 +99,14 @@ const JitsiMeeting = ({
   }, [jitsiClass, loadIFrame]);
 
   const renderLoadingSpinner = useCallback(() => {
-    if (!spinner) {
+    if (!Spinner) {
       return null;
     }
     if (!loading) {
       return null;
     }
-    const Spinner = spinner;
     return <Spinner />;
-  }, [spinner]);
+  }, [Spinner]);
 
   return (
     <>

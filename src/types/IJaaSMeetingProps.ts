@@ -1,4 +1,4 @@
-import React, { MutableRefObject } from 'react';
+import React from 'react';
 
 /* eslint-disable-next-line */
 import { JaaSMeeting } from '..';
@@ -104,7 +104,7 @@ export default interface IJaaSMeetingProps {
   onApiReady: (api: IJitsiMeetExternalApi) => void;
 
   /**
-   * The reference to the div used by the IFrame.
+   * The parent node used by the IFrame.
    */
-   getIFrameRef?: (ref: MutableRefObject<HTMLElement>) => void;
+   getIFrameRef?: (parentNode: HTMLDivElement) => void;
 }
