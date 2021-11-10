@@ -1,5 +1,5 @@
 import { initExternalApi, fetchExternalApi } from '..';
-import { IJitsiMeetExternalApi } from '../types';
+import { JitsiMeetExternalApi } from '../types';
 
 const SUCCESS_DOMAIN = 'meet.jit.si';
 const ERROR_DOMAIN = 'error';
@@ -27,7 +27,7 @@ describe('initExternalApi module', () => {
 
     it('should return the external api instance', done => {
         const initExternalApiMock = jest.fn(initExternalApi);
-        const callback = (err: Error | null, result?: new () => IJitsiMeetExternalApi) => {
+        const callback = (err: Error | null, result?: JitsiMeetExternalApi) => {
             try {
                 expect(result).toBeTruthy();
                 done();

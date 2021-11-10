@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { initExternalApi } from '..';
-import { IJitsiMeetExternalApi, IJitsiMeetingProps } from '../types';
+import { IJitsiMeetExternalApi, IJitsiMeetingProps, JitsiMeetExternalApi } from '../types';
 import { generateComponentId } from '../utils';
 
 /**
@@ -41,7 +41,7 @@ const JitsiMeeting = ({
     const [ componentId, setComponentId ] = useState<string>('');
     const [ loading, setLoading ] = useState(true);
     const [ apiLoaded, setApiLoaded ] = useState(false);
-    const externalApi = useRef<new(dom: string, ob: object) => IJitsiMeetExternalApi>();
+    const externalApi = useRef<JitsiMeetExternalApi>();
     const apiRef = useRef<IJitsiMeetExternalApi>();
     const meetingRef = useRef<HTMLDivElement>(null);
 
@@ -60,8 +60,8 @@ const JitsiMeeting = ({
         });
     }, []);
 
-    const loadIFrame = useCallback((JitsiMeetExternalApi: new (dom: string, ob: object) => IJitsiMeetExternalApi) => {
-        apiRef.current = new JitsiMeetExternalApi(domain, {
+    const loadIFrame = useCallback((JitsiMeetExternalAPI: JitsiMeetExternalApi) => {
+        apiRef.current = new JitsiMeetExternalAPI(domain, {
             roomName,
             width,
             height,

@@ -1,9 +1,9 @@
 import { DEFAULT_DOMAIN, JAAS_DOMAIN } from './constants';
-import IJitsiMeetExternalApi from './types/IJitsiMeetExternalApi';
+import { JitsiMeetExternalApi } from './types';
 
 type ExternalApi = {
     isLoaded: boolean;
-    callbacks: ((err: Error | null, api?: new () => IJitsiMeetExternalApi) => void)[];
+    callbacks: ((err: Error | null, api?: JitsiMeetExternalApi) => void)[];
     err: Error | null;
 };
 
@@ -11,7 +11,7 @@ let externalApi: ExternalApi;
 
 export const initExternalApi = (
         domain: string = DEFAULT_DOMAIN,
-        callback: (err: Error | null, api?: new () => IJitsiMeetExternalApi) => void
+        callback: (err: Error | null, api?: JitsiMeetExternalApi) => void
 ): void => {
     if (!externalApi) {
         externalApi = {
@@ -69,16 +69,16 @@ export const initExternalApi = (
  * class definition or an error
  *
  * @param {string} domain - The domain of the external API
- * @returns {Promise<object>} - Object containing the JitsiMeetExternalAPI object
+ * @returns {Promise<JitsiMeetExternalApi>} - the JitsiMeetExternalAPI object
  * or an error
  */
 export const fetchExternalApi = (
         domain: string = JAAS_DOMAIN
-): Promise<(new (dom: string, ob: object) => IJitsiMeetExternalApi)> =>
+): Promise<JitsiMeetExternalApi> =>
     new Promise((resolve, reject) => {
         initExternalApi(
                         domain,
-                        (error: Error | null, api?: new (dom: string, ob: object) => IJitsiMeetExternalApi
+                        (error: Error | null, api?: JitsiMeetExternalApi
                         ): void => {
                             if (error) {
                                 reject(error);
@@ -86,5 +86,8 @@ export const fetchExternalApi = (
                             if (api) {
                                 resolve(api);
                             }
+
+                            // TODO: should not get here
+                            reject(new Error('An unknown error occured.'));
                         });
     });
