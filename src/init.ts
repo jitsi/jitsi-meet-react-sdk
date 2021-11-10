@@ -1,13 +1,9 @@
 import { DEFAULT_DOMAIN, JAAS_DOMAIN } from './constants';
 import IJitsiMeetExternalApi from './types/IJitsiMeetExternalApi';
 
-export type ExternalApiBuilder = {
-    JitsiMeetExternalApi: IJitsiMeetExternalApi;
-};
-
 type ExternalApi = {
     isLoaded: boolean;
-    callbacks: ((err: Error | null, api?: ExternalApiBuilder) => void)[];
+    callbacks: ((err: Error | null, api?: new () => IJitsiMeetExternalApi) => void)[];
     err: Error | null;
 };
 
@@ -15,7 +11,7 @@ let externalApi: ExternalApi;
 
 export const initExternalApi = (
         domain: string = DEFAULT_DOMAIN,
-        callback: (err: Error | null, api?: ExternalApiBuilder) => void
+        callback: (err: Error | null, api?: new () => IJitsiMeetExternalApi) => void
 ): void => {
     if (!externalApi) {
         externalApi = {
@@ -35,7 +31,7 @@ export const initExternalApi = (
                 callbacks.forEach(cb => {
                     // cb can be `setExternalApi` when called from component
                     // or the `resolve` function when from fetchExternalApi
-                    cb(null, { JitsiMeetExternalApi: window.JitsiMeetExternalAPI });
+                    cb(null, window.JitsiMeetExternalAPI);
                 });
             }
         };
@@ -60,7 +56,7 @@ export const initExternalApi = (
         if (externalApi.err) {
             callback(externalApi.err);
         } else {
-            callback(null, { JitsiMeetExternalApi: window.JitsiMeetExternalAPI });
+            callback(null, window.JitsiMeetExternalAPI);
         }
     } else {
         externalApi.callbacks.push(callback);
@@ -78,9 +74,9 @@ export const initExternalApi = (
  */
 export const fetchExternalApi = (
         domain: string = JAAS_DOMAIN
-): Promise<void | ExternalApiBuilder> =>
+): Promise<void | (new () => IJitsiMeetExternalApi)> =>
     new Promise((resolve, reject) => {
-        initExternalApi(domain, (error: Error | null, api?: ExternalApiBuilder): void => {
+        initExternalApi(domain, (error: Error | null, api?: new () => IJitsiMeetExternalApi): void => {
             if (error) {
                 reject(error);
             }

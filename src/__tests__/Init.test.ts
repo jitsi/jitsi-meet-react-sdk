@@ -1,4 +1,5 @@
-import { initExternalApi, fetchExternalApi, ExternalApiBuilder } from '..';
+import { initExternalApi, fetchExternalApi } from '..';
+import { IJitsiMeetExternalApi } from '../types';
 
 const SUCCESS_DOMAIN = 'meet.jit.si';
 const ERROR_DOMAIN = 'error';
@@ -9,7 +10,7 @@ describe('fetchExternalApi module', () => {
         const fetchExternalApiMock = jest.fn(fetchExternalApi);
 
         return fetchExternalApiMock(SUCCESS_DOMAIN).then(value => {
-            expect(value).toHaveProperty('JitsiMeetExternalApi');
+            expect(value).toBeTruthy();
         });
     });
 
@@ -26,9 +27,9 @@ describe('initExternalApi module', () => {
 
     it('should return the external api instance', done => {
         const initExternalApiMock = jest.fn(initExternalApi);
-        const callback = (err: Error | null, result?: ExternalApiBuilder) => {
+        const callback = (err: Error | null, result?: new () => IJitsiMeetExternalApi) => {
             try {
-                expect(result).toHaveProperty('JitsiMeetExternalApi');
+                expect(result).toBeTruthy();
                 done();
             } catch (e) {
                 done(e);

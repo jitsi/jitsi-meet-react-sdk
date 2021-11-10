@@ -10,8 +10,8 @@ npm install @jitsi/web-sdk
 To import the Jitsi Meet External API in a non-React project:
 ```js
 window.onload = () => {
-    fetchExternalApi().then(result => {
-        const api = new result.JitsiMeetExternalApi("YOUR_DOMAIN", { roomName: "YOUR_CUSTOM_ROOM_NAME" });
+    fetchExternalApi().then(JitsiMeetExternalApi => {
+        const api = new JitsiMeetExternalApi("YOUR_DOMAIN", { roomName: "YOUR_CUSTOM_ROOM_NAME" });
     });
 }
 ```
