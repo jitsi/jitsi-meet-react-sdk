@@ -3,13 +3,13 @@ const path = require('path');
 
 module.exports = {
     mode: 'development',
-    entry: path.resolve(__dirname, '/index.js'),
+    entry: path.resolve(__dirname, './index.js'),
     output: {
         filename: 'index.js'
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, '/index.html'),
+            template: path.resolve(__dirname, './index.html'),
             inject: 'body'
         })
     ],

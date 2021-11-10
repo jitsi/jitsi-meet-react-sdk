@@ -74,12 +74,17 @@ export const initExternalApi = (
  */
 export const fetchExternalApi = (
         domain: string = JAAS_DOMAIN
-): Promise<void | (new () => IJitsiMeetExternalApi)> =>
+): Promise<(new (dom: string, ob: object) => IJitsiMeetExternalApi)> =>
     new Promise((resolve, reject) => {
-        initExternalApi(domain, (error: Error | null, api?: new () => IJitsiMeetExternalApi): void => {
-            if (error) {
-                reject(error);
-            }
-            resolve(api);
-        });
+        initExternalApi(
+                        domain,
+                        (error: Error | null, api?: new (dom: string, ob: object) => IJitsiMeetExternalApi
+                        ): void => {
+                            if (error) {
+                                reject(error);
+                            }
+                            if (api) {
+                                resolve(api);
+                            }
+                        });
     });

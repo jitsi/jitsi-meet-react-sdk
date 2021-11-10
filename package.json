@@ -8,7 +8,9 @@
         "build": "tsc",
         "lint": "eslint --ext .ts,.tsx,.js ./src",
         "lint-fix": "npm run lint -- --fix",
-        "test": "jest --config jestconfig.json"
+        "test": "jest --config jestconfig.json",
+        "examples": "npm run build && cd ./examples/jitsiMeeting && npm i && npm start",
+        "examples2": "npm run build && cd ./examples/fetchExternalApi && npm i && npm start"
     },
     "repository": {
         "type": "git",
