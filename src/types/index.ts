@@ -1,8 +1,8 @@
 import { default as IJitsiMeetExternalApi } from './IJitsiMeetExternalApi';
 declare global {
-  interface Window {
-    JitsiMeetExternalAPI: IJitsiMeetExternalApi;
-  }
+    interface Window {
+        JitsiMeetExternalAPI: IJitsiMeetExternalApi;
+    }
 }
 
 export { default as IJitsiMeetingProps } from './IJitsiMeetingProps';

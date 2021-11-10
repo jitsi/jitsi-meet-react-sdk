@@ -4,17 +4,17 @@ jobs:
   run-ci:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '16.x'
-      - run: npm i
-      - name: Check git status
-        run: git status
-      - name: Check git diff
-        run: git diff
-      - name: Check if the git repository is clean
-        run: exit $( git status --porcelain --untracked-files=no | head -255 | wc -l )
-      - run: npm run lint
-      - name: Run unit tests
-        run: npm test
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v1
+            with:
+            node-version: '16.x'
+        - run: npm i
+        - name: Check git status
+            run: git status
+        - name: Check git diff
+            run: git diff
+        - name: Check if the git repository is clean
+            run: exit $( git status --porcelain --untracked-files=no | head -255 | wc -l )
+        - run: npm run lint
+        - name: Run unit tests
+            run: npm test

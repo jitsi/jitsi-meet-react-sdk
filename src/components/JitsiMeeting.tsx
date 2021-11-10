@@ -104,12 +104,12 @@ const JitsiMeeting = ({
         if (!Spinner) {
             return null;
         }
-        if (!loading) {
+        if (!loading || apiRef.current) {
             return null;
         }
 
         return <Spinner />;
-    }, [ Spinner ]);
+    }, [ Spinner, apiRef.current ]);
 
     return (
         <>

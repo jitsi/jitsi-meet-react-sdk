@@ -3,16 +3,16 @@ The Jitsi Meet Web SDK provides the same user experience as the [Jitsi Meet](htt
 
 ## Install
 ```bash
-npm install jitsi-meet-websdk
+npm install @jitsi/web-sdk
 ```
 ### Modules
 #### fetchExternalApi
 To import the Jitsi Meet External API in a non-React project:
 ```js
 window.onload = () => {
-  fetchExternalApi().then((externalApi) => {
-    const api = new externalApi.fn("YOUR_DOMAIN", { roomName: "YOUR_CUSTOM_ROOM_NAME" });
-  });
+    fetchExternalApi().then((externalApi) => {
+        const api = new externalApi.Fn("YOUR_DOMAIN", { roomName: "YOUR_CUSTOM_ROOM_NAME" });
+    });
 }
 ```
 #### JitsiMeeting
