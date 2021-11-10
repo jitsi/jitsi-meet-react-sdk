@@ -1,8 +1,10 @@
-export default interface IJitsiMeetExternalApi {
+import EventEmitter from 'events';
+
+export default interface IJitsiMeetExternalApi extends EventEmitter {
 
     /**
      * Adds an event listener to the Jitsi Meet External API.
-     * @deprecated backward compatibility only
+     * @deprecated backward compatibility only, preferably use `on` instead
      */
     addEventListener: (event: string, fn: () => void) => void;
 

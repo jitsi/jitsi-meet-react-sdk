@@ -57,8 +57,8 @@ const JitsiMeeting = ({
         });
     }, []);
 
-    const loadIFrame = useCallback((JitsiMeetExternalAPI: any) => {
-        apiRef.current = new JitsiMeetExternalAPI.Fn(domain, {
+    const loadIFrame = useCallback((result: any) => {
+        apiRef.current = new result.JitsiMeetExternalApi(domain, {
             roomName,
             width,
             height,

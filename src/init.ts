@@ -2,7 +2,7 @@ import { DEFAULT_DOMAIN, JAAS_DOMAIN } from './constants';
 import IJitsiMeetExternalApi from './types/IJitsiMeetExternalApi';
 
 export type ExternalApiBuilder = {
-    Fn: IJitsiMeetExternalApi;
+    JitsiMeetExternalApi: IJitsiMeetExternalApi;
 };
 
 type ExternalApi = {
@@ -35,7 +35,7 @@ export const initExternalApi = (
                 callbacks.forEach(cb => {
                     // cb can be `setExternalApi` when called from component
                     // or the `resolve` function when from fetchExternalApi
-                    cb(null, { Fn: window.JitsiMeetExternalAPI });
+                    cb(null, { JitsiMeetExternalApi: window.JitsiMeetExternalAPI });
                 });
             }
         };
@@ -60,7 +60,7 @@ export const initExternalApi = (
         if (externalApi.err) {
             callback(externalApi.err);
         } else {
-            callback(null, { Fn: window.JitsiMeetExternalAPI });
+            callback(null, { JitsiMeetExternalApi: window.JitsiMeetExternalAPI });
         }
     } else {
         externalApi.callbacks.push(callback);

@@ -9,7 +9,7 @@ describe('fetchExternalApi module', () => {
         const fetchExternalApiMock = jest.fn(fetchExternalApi);
 
         return fetchExternalApiMock(SUCCESS_DOMAIN).then(value => {
-            expect(value).toHaveProperty('Fn');
+            expect(value).toHaveProperty('JitsiMeetExternalApi');
         });
     });
 
@@ -28,7 +28,7 @@ describe('initExternalApi module', () => {
         const initExternalApiMock = jest.fn(initExternalApi);
         const callback = (err: Error | null, result?: ExternalApiBuilder) => {
             try {
-                expect(result).toHaveProperty('Fn');
+                expect(result).toHaveProperty('JitsiMeetExternalApi');
                 done();
             } catch (e) {
                 done(e);
