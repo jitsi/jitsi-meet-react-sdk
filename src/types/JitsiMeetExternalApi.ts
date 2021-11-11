@@ -91,6 +91,10 @@ export type JitsiMeetExternalApi = {
                  */
                 email: string
             },
+
+            /**
+             * The HTML DOM Element where the IFrame is added as a child.
+             */
             parentNode?: HTMLDivElement | null
         }
     ): IJitsiMeetExternalApi

@@ -76,18 +76,19 @@ export const fetchExternalApi = (
         domain: string = JAAS_DOMAIN
 ): Promise<JitsiMeetExternalApi> =>
     new Promise((resolve, reject) => {
+        /* eslint-disable indent */
         initExternalApi(
-                        domain,
-                        (error: Error | null, api?: JitsiMeetExternalApi
-                        ): void => {
-                            if (error) {
-                                reject(error);
-                            }
-                            if (api) {
-                                resolve(api);
-                            }
+            domain,
+            (error: Error | null, api?: JitsiMeetExternalApi
+        ): void => {
+            if (error) {
+                reject(error);
+            }
+            if (api) {
+                resolve(api);
+            }
 
-                            // TODO: should not get here
-                            reject(new Error('An unknown error occured.'));
-                        });
+            // TODO: should not get here
+            reject(new Error('An unknown error occured.'));
+        });
     });
