@@ -14,8 +14,6 @@ import { JitsiMeeting } from '.';
   ```js
       <JaaSMeeting
         roomName: 'TestingJaaSMeetingComponent'
-        width: '100%'
-        height: 500
         appId='exampleAppId'
         spinner={CustomSpinner}
         onApiReady={(externalApi) => console.log(externalApi)}
@@ -29,7 +27,7 @@ const JaaSMeeting = ({
 }: IJaaSMeetingProps) => (
     <JitsiMeeting
         domain={JAAS_DOMAIN}
-        roomName={getRoomName(appId, roomName)}
+        roomName={getRoomName(roomName, appId)}
         {...rest}
     />
 );

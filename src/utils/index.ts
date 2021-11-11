@@ -1,16 +1,14 @@
-import { DEFAULT_OPTIONS } from '../constants';
-
 /**
  * Returns the complete room name
  *
- * @param {string | undefined} tenant
  * @param {string} roomName
+ * @param {string | undefined} tenant
  * @returns {string} the complete room name
  */
 export const getRoomName = (
-        tenant?: string,
-        roomName = DEFAULT_OPTIONS.roomName
-): string => tenant ? `${tenant}/${roomName}` : roomName;
+        roomName?: string,
+        tenant?: string
+): string | undefined => tenant ? `${tenant}/${roomName}` : roomName;
 
 
 let instancesCounter = 0;

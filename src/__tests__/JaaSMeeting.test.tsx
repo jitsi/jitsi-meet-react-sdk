@@ -3,7 +3,6 @@ import toJson from 'enzyme-to-json';
 import * as React from 'react';
 
 import { JitsiMeeting } from '../components';
-import { DEFAULT_OPTIONS } from '../constants';
 import { JaaSMeeting } from '../index';
 import { IJitsiMeetExternalApi } from '../types';
 
@@ -11,7 +10,7 @@ describe('JaaSMeeting component', () => {
 
     it('should render correctly', () => {
         const props = {
-            ...DEFAULT_OPTIONS,
+            roomName: 'TestingJaaSMeetingComponent',
             appId: 'testAppId',
             onApiReady: (externalApi: IJitsiMeetExternalApi) => {
                 console.log(externalApi);
@@ -29,7 +28,7 @@ describe('JaaSMeeting component', () => {
 
     it('should pass the correct props to the JitsiMeeting component', () => {
         const props = {
-            roomName: 'testRoom',
+            roomName: 'TestingJaaSMeetingProps',
             appId: 'testAppId',
             onApiReady: (externalApi: IJitsiMeetExternalApi) => {
                 console.log(externalApi);
@@ -37,7 +36,7 @@ describe('JaaSMeeting component', () => {
         };
         const wrapper = shallow(<JaaSMeeting {...props} />);
 
-        expect(wrapper.find(JitsiMeeting).prop('roomName')).toBe('testAppId/testRoom');
+        expect(wrapper.find(JitsiMeeting).prop('roomName')).toBe('testAppId/TestingJaaSMeetingProps');
         expect(wrapper.find(JitsiMeeting).prop('domain')).toBe('8x8.vc');
     });
 });

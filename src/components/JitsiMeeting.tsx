@@ -15,8 +15,6 @@ import { generateComponentId } from '../utils';
     <JitsiMeeting
         domain='meet.jit.si'
         roomName: 'TestingJitsiMeetingComponent'
-        width: '100%'
-        height: 500
         spinner={CustomSpinner}
         onApiReady={(externalApi) => console.log(externalApi)}
     />
@@ -25,8 +23,6 @@ import { generateComponentId } from '../utils';
 const JitsiMeeting = ({
     domain,
     roomName,
-    width,
-    height,
     configOverwrite,
     interfaceConfigOverwrite,
     jwt,
@@ -63,8 +59,6 @@ const JitsiMeeting = ({
     const loadIFrame = useCallback((JitsiMeetExternalAPI: JitsiMeetExternalApi) => {
         apiRef.current = new JitsiMeetExternalAPI(domain, {
             roomName,
-            width,
-            height,
             configOverwrite,
             interfaceConfigOverwrite,
             jwt,
@@ -86,8 +80,6 @@ const JitsiMeeting = ({
         getIFrameRef,
         domain,
         roomName,
-        width,
-        height,
         configOverwrite,
         interfaceConfigOverwrite,
         jwt,

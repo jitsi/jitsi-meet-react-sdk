@@ -3,17 +3,13 @@
 exports[`JaaSMeeting component should render correctly 1`] = `
 <JaaSMeeting
   appId="testAppId"
-  height="700px"
   onApiReady={[Function]}
-  roomName="DefaultRoomNameExample"
-  width="100%"
+  roomName="TestingJaaSMeetingComponent"
 >
   <JitsiMeeting
     domain="8x8.vc"
-    height="700px"
     onApiReady={[Function]}
-    roomName="testAppId/DefaultRoomNameExample"
-    width="100%"
+    roomName="testAppId/TestingJaaSMeetingComponent"
   >
     <div
       id="test"

@@ -44,12 +44,14 @@ const App = () => {
     const handleJitsiIFrameRef = iframeRef => {
         iframeRef.style.border = '10px solid cadetblue';
         iframeRef.style.background = 'cadetblue';
+        iframeRef.style.height = '500px';
     };
 
     const handleJaasIFrameRef = iframeRef => {
         iframeRef.style.marginTop = '10px';
         iframeRef.style.border = '10px dashed tomato';
         iframeRef.style.padding = '5px';
+        iframeRef.style.height = '400px';
     };
 
     const handleApiReady = (apiObj, ref) => {
@@ -75,8 +77,6 @@ const App = () => {
             <JitsiMeeting
                 domain='meet.jit.si'
                 roomName='JitsiMeetingComponentDemo'
-                width='100%'
-                height='400px'
                 onApiReady={externalApi => handleApiReady(externalApi, apiRefNew)}
             />
         );
@@ -158,18 +158,12 @@ const App = () => {
             }}>JitsiMeeting Demo App</h1>
             <JitsiMeeting
                 domain="meet.jit.si"
-                roomName='JitsiMeetingComponentDemo'
-                width='100%'
-                height='400px'
                 spinner={renderSpinner}
                 onApiReady={externalApi => handleApiReady(externalApi, apiRef)}
                 getIFrameRef={handleJitsiIFrameRef}
             />
             <JaaSMeeting
                 appId="test"
-                roomName='JaaSMeetingComponentDemo'
-                width='100%'
-                height='400px'
                 spinner={renderSpinner}
                 onApiReady={externalApi => handleApiReady(externalApi, apiRef)}
                 getIFrameRef={handleJaasIFrameRef}

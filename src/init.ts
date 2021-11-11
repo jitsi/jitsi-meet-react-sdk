@@ -1,9 +1,9 @@
-import { DEFAULT_DOMAIN, JAAS_DOMAIN } from './constants';
+import { DEFAULT_DOMAIN } from './constants';
 import { JitsiMeetExternalApi } from './types';
 
 type ExternalApi = {
     isLoaded: boolean;
-    callbacks: ((err: Error | null, api?: JitsiMeetExternalApi) => void)[];
+    callbacks: ((err: Error | null, JitsiMeetApi?: JitsiMeetExternalApi) => void)[];
     err: Error | null;
 };
 
@@ -11,7 +11,7 @@ let externalApi: ExternalApi;
 
 export const initExternalApi = (
         domain: string = DEFAULT_DOMAIN,
-        callback: (err: Error | null, api?: JitsiMeetExternalApi) => void
+        callback: (err: Error | null, JitsiMeetApi?: JitsiMeetExternalApi) => void
 ): void => {
     if (!externalApi) {
         externalApi = {
@@ -73,19 +73,21 @@ export const initExternalApi = (
  * or an error
  */
 export const fetchExternalApi = (
-        domain: string = JAAS_DOMAIN
+        domain?: string
 ): Promise<JitsiMeetExternalApi> =>
     new Promise((resolve, reject) => {
         /* eslint-disable indent */
         initExternalApi(
             domain,
-            (error: Error | null, api?: JitsiMeetExternalApi
+            (error: Error | null, JitsiMeetApi?: JitsiMeetExternalApi
         ): void => {
             if (error) {
                 reject(error);
+
+                return;
             }
-            if (api) {
-                resolve(api);
+            if (JitsiMeetApi) {
+                resolve(JitsiMeetApi);
             }
 
             // TODO: should not get here
