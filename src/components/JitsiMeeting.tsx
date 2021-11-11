@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { initExternalApi } from '..';
+import { fetchExternalApi } from '..';
 import { IJitsiMeetExternalApi, IJitsiMeetingProps, JitsiMeetExternalApi } from '../types';
 import { generateComponentId } from '../utils';
 
@@ -42,17 +42,12 @@ const JitsiMeeting = ({
 
     useEffect(() => {
         setComponentId(generateComponentId('jitsiMeeting'));
-        initExternalApi(domain, (err: Error | null, api?: any): void => {
-            if (err) {
-                /* eslint-disable-next-line */
-                console.error(err);
-
-                return;
-            }
-
-            externalApi.current = api;
-            setApiLoaded(true);
-        });
+        fetchExternalApi(domain)
+            .then((api: JitsiMeetExternalApi) => {
+                externalApi.current = api;
+                setApiLoaded(true);
+            })
+            .catch((e: Error) => console.error(e.message));
     }, []);
 
     const loadIFrame = useCallback((JitsiMeetExternalAPI: JitsiMeetExternalApi) => {

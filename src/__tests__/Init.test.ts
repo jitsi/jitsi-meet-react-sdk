@@ -1,5 +1,4 @@
-import { initExternalApi, fetchExternalApi } from '..';
-import { JitsiMeetExternalApi } from '../types';
+import { fetchExternalApi } from '..';
 
 const SUCCESS_DOMAIN = 'meet.jit.si';
 const ERROR_DOMAIN = 'error';
@@ -20,22 +19,5 @@ describe('fetchExternalApi module', () => {
         return fetchExternalApiMock(ERROR_DOMAIN).catch((e: Error) => {
             expect(e.message).toEqual(`Script load error: https://${ERROR_DOMAIN}/external_api.js`);
         });
-    });
-});
-
-describe('initExternalApi module', () => {
-
-    it('should return the external api instance', done => {
-        const initExternalApiMock = jest.fn(initExternalApi);
-        const callback = (err: Error | null, result?: JitsiMeetExternalApi) => {
-            try {
-                expect(result).toBeTruthy();
-                done();
-            } catch (e) {
-                done(e);
-            }
-        };
-
-        initExternalApiMock(SUCCESS_DOMAIN, callback);
     });
 });

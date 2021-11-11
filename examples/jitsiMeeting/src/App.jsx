@@ -1,4 +1,4 @@
-import { JitsiMeeting, JaaSMeeting } from '@jitsi/web-sdk';
+import { JitsiMeeting } from '@jitsi/web-sdk';
 import React, { useRef, useState } from 'react';
 
 
@@ -41,13 +41,13 @@ const App = () => {
         });
     };
 
-    const handleJitsiIFrameRef = iframeRef => {
+    const handleJitsiIFrameRef1 = iframeRef => {
         iframeRef.style.border = '10px solid cadetblue';
         iframeRef.style.background = 'cadetblue';
-        iframeRef.style.height = '500px';
+        iframeRef.style.height = '400px';
     };
 
-    const handleJaasIFrameRef = iframeRef => {
+    const handleJitsiIFrameRef2 = iframeRef => {
         iframeRef.style.marginTop = '10px';
         iframeRef.style.border = '10px dashed tomato';
         iframeRef.style.padding = '5px';
@@ -160,13 +160,13 @@ const App = () => {
                 domain="meet.jit.si"
                 spinner={renderSpinner}
                 onApiReady={externalApi => handleApiReady(externalApi, apiRef)}
-                getIFrameRef={handleJitsiIFrameRef}
+                getIFrameRef={handleJitsiIFrameRef1}
             />
-            <JaaSMeeting
-                appId="test"
+            <JitsiMeeting
+                domain="meet.jit.si"
                 spinner={renderSpinner}
                 onApiReady={externalApi => handleApiReady(externalApi, apiRef)}
-                getIFrameRef={handleJaasIFrameRef}
+                getIFrameRef={handleJitsiIFrameRef2}
             />
             {renderButtons()}
             {renderNewComp()}
