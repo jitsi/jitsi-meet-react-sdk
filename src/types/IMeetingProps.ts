@@ -30,11 +30,6 @@ export default interface IMeetingProps {
     jwt?: string;
 
     /**
-     * The IFrame onload event handler.
-     */
-    onload?: () => void;
-
-    /**
      * Object arrays that contain information about participants invited to a call.
      */
     invitees?: [];

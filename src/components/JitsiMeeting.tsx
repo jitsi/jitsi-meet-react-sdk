@@ -26,7 +26,6 @@ const JitsiMeeting = ({
     configOverwrite,
     interfaceConfigOverwrite,
     jwt,
-    onload,
     invitees,
     devices,
     userInfo,
@@ -62,7 +61,6 @@ const JitsiMeeting = ({
             configOverwrite,
             interfaceConfigOverwrite,
             jwt,
-            onload,
             invitees,
             devices,
             userInfo,
@@ -83,7 +81,6 @@ const JitsiMeeting = ({
         configOverwrite,
         interfaceConfigOverwrite,
         jwt,
-        onload,
         invitees,
         devices,
         userInfo
