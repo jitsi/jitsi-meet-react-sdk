@@ -8,7 +8,10 @@
         "build": "tsc",
         "lint": "eslint --ext .ts,.tsx,.js ./src",
         "lint-fix": "npm run lint -- --fix",
-        "test": "jest --config jestconfig.json"
+        "test": "jest --config jestconfig.json",
+        "watch": "watch 'npm run build' src",
+        "start-component-demo": "npm run build && cd ./examples/jitsiMeeting && npm i && npm start",
+        "start-fetch-demo": "npm run build && cd ./examples/fetchExternalApi && npm i && npm start"
     },
     "repository": {
         "type": "git",
@@ -47,7 +50,8 @@
         "jest": "^27.3.1",
         "jest-cli": "^27.3.1",
         "ts-jest": "^27.0.7",
-        "typescript": "^4.4.4"
+        "typescript": "^4.4.4",
+        "watch": "^1.0.2"
     },
     "files": [
         "lib/**/*"
