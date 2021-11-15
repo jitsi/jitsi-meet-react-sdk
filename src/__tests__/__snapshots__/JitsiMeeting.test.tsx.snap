@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JitsiMeeting component should render correctly 1`] = `
+<Fragment>
+  <div
+    id="test"
+    key="test"
+  />
+</Fragment>
+`;

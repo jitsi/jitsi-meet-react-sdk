@@ -1,0 +1,59 @@
+{
+    "name": "@jitsi/web-sdk",
+    "version": "0.0.0",
+    "description": "Web SDK for the Jitsi Meet IFrame",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "scripts": {
+        "build": "tsc",
+        "lint": "eslint --ext .ts,.tsx,.js ./src",
+        "lint-fix": "npm run lint -- --fix",
+        "test": "jest --config jestconfig.json",
+        "watch": "watch 'npm run build' src",
+        "start-component-demo": "npm run build && cd ./examples/jitsiMeeting && npm i && npm start",
+        "start-fetch-demo": "npm run build && cd ./examples/fetchExternalApi && npm i && npm start"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jitsi/jitsi-meet-web-sdk.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/jitsi/jitsi-meet-web-sdk/issues"
+    },
+    "homepage": "https://github.com/jitsi/jitsi-meet-web-sdk#readme",
+    "peerDependencies": {
+        "react": "^16.8.0",
+        "react-dom": "^16.8.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.15.8",
+        "@babel/preset-typescript": "^7.15.0",
+        "@types/enzyme": "^3.10.10",
+        "@types/jest": "^27.0.2",
+        "@types/node": "^16.11.7",
+        "@types/react": "^17.0.33",
+        "@types/react-dom": "^17.0.10",
+        "@typescript-eslint/eslint-plugin": "^5.3.1",
+        "@typescript-eslint/parser": "^5.3.1",
+        "babel-eslint": "^10.1.0",
+        "babel-jest": "^27.3.1",
+        "babel-loader": "^8.2.3",
+        "enzyme": "^3.11.0",
+        "enzyme-adapter-react-16": "^1.15.6",
+        "enzyme-to-json": "^3.6.2",
+        "eslint": "^8.0.1",
+        "eslint-config-jitsi": "github:jitsi/eslint-config-jitsi",
+        "eslint-plugin-import": "^2.25.2",
+        "jest": "^27.3.1",
+        "jest-cli": "^27.3.1",
+        "ts-jest": "^27.0.7",
+        "typescript": "^4.4.4",
+        "watch": "^1.0.2"
+    },
+    "files": [
+        "lib/**/*"
+    ]
+}

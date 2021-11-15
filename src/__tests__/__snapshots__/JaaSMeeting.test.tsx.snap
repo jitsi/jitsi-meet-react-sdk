@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JaaSMeeting component should render correctly 1`] = `
+<JaaSMeeting
+  appId="testAppId"
+  onApiReady={[Function]}
+  roomName="TestingJaaSMeetingComponent"
+>
+  <JitsiMeeting
+    domain="8x8.vc"
+    onApiReady={[Function]}
+    roomName="testAppId/TestingJaaSMeetingComponent"
+  >
+    <div
+      id="test"
+      key="test"
+    />
+  </JitsiMeeting>
+</JaaSMeeting>
+`;
