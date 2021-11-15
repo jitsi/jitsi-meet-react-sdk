@@ -1,6 +1,6 @@
 {
     "name": "jitsimeeting_demo",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "Usage example for the JitsiMeeting component",
     "main": "index.js",
     "scripts": {
