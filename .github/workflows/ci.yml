@@ -21,7 +21,7 @@ jobs:
       - name: Run unit tests
         run: npm test
       - name: Release to npm
-        if: github.event_name == 'release' && github.event.action == 'published' && startsWith(matrix.os, 'macos')
+        if: github.event_name == 'release' && github.event.action == 'published'
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
