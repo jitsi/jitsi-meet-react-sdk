@@ -1,5 +1,9 @@
 name: Web SDK CI
-on: pull_request
+on:
+  pull_request:
+  release:
+    types:
+      - published
 jobs:
   run-ci:
     runs-on: ubuntu-latest
