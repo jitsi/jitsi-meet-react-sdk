@@ -1,6 +1,6 @@
 {
     "name": "@jitsi/web-sdk",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Web SDK for the Jitsi Meet IFrame",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
