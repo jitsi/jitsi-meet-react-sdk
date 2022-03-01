@@ -1,38 +1,90 @@
-# Jitsi Meet Web SDK
-The Jitsi Meet Web SDK provides the same user experience as the [Jitsi Meet](https://github.com/jitsi/jitsi-meet) app, in a customizable way which you can embed in your apps.
+# Jitsi Meet React SDK
+The Jitsi Meet React SDK provides the same user experience as the [Jitsi Meet](https://github.com/jitsi/jitsi-meet) app, in a customizable way which you can embed in your apps.
 
 ## Install
 ```bash
-npm install @jitsi/web-sdk
+npm install @jitsi/react-sdk
 ```
 ### Modules
-#### fetchExternalApi
-To import the Jitsi Meet External API in a non-React project:
-```js
-window.onload = () => {
-    fetchExternalApi().then(JitsiMeetExternalApi => {
-        const api = new JitsiMeetExternalApi("YOUR_DOMAIN");
-    });
-}
-```
+This library exposes two components with similar properties, intended for different use-cases.
 #### JitsiMeeting
 To be used with custom domains as-it-is in React projects:
 ```js
 <JitsiMeeting
-    domain="YOUR_DOMAIN"
+    domain = { YOUR_DOMAIN }
+    roomName = { YOUR_ROOM_NAME }
 />
 ```
+##### Properties specific to the `JitsiMeeting` component
+###### `domain`
+Optional. Field used to retrieve the external_api.js file that initializes the IFrame. If omitted, defaults to `meet.jit.si`.
+
 #### JaaSMeeting
-To be used with `8x8.vc` domain as-it-is in React projects:
+To be used with the `8x8.vc` domain as-it-is in React projects:
 ```js
 <JaaSMeeting
-    appId="YOUR_APP_ID"
+    appId = { YOUR_APP_ID }
+    roomName = { YOUR_ROOM_NAME }
+/>
+```
+##### Properties specific to the `JaasMeeting` component
+###### `appId` 
+Required. Provides an isolated context and prefixes the room name.
+
+##### Common properties
+###### `roomName`
+Required. String used when joining the meeting.
+
+###### `getIFrameRef`
+Optional. Callback to retrieve the parent node of the IFrame for more control (e.g. styling).
+```js
+<JitsiMeeting
+    ...
+    getIFrameRef = { iframeRef => { iframeRef.style.height = '700px'; } }
 />
 ```
 
-## Samples
-Install and run the projects from the `examples` directory to see the modules in action.
+###### `onApiReady`
+Optional. Callback triggered when the external API is loaded to expose it for events and commands.
+```js
+<JitsiMeeting
+    ...
+    onApiReady = { externalApi => console.log('Jitsi Meet External API', externalApi) }
+/>
+```
+
+###### `onReadyToClose`
+Optional. Callback triggered when the meeting is ready to be closed.
+```js
+<JitsiMeeting
+    ...
+    onReadyToClose = { () => console.log('Jitsi Meet is ready to be closed') }
+/>
+```
+
+###### `configOverwrite`
+Optional. Object used for options overrides.
+
+###### `interfaceConfigOverwrite`
+Optional. Object used for more options overrides.
+
+###### `jwt`
+Optional. Token for authentication.
+
+###### `invitees`
+Optional. Participants list.
+
+###### `devices`
+Optional. Information regarding the devices used during the call.
+
+###### `userInfo`
+Optional. Details about the participant that started the meeting.
+
+###### `spinner`
+Optional. Custom loading view while the IFrame is loading.
+
+## Sample
+Install and run the project from the `example` directory to see the JitsiMeeting module in action.
 ```bash
-npm run start-fetch-demo
-npm run start-component-demo
+npm run demo
 ```

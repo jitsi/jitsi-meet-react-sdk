@@ -3,14 +3,14 @@ import React from 'react';
 import IJitsiMeetExternalApi from './IJitsiMeetExternalApi';
 
 /**
- * The the base props for React {@code Components} that load the Jitsi Meet IFrame
+ * The the base props for React {@code Components} that load the Jitsi Meet IFrame.
  */
 export default interface IMeetingProps {
 
     /**
      * The name of the room to join.
      */
-    roomName?: string;
+    roomName: string;
 
     /**
      * The JS object with overrides for options defined in the config.js file
@@ -79,7 +79,12 @@ export default interface IMeetingProps {
     /**
      * The external API reference for events and commands.
      */
-    onApiReady: (api: IJitsiMeetExternalApi) => void;
+    onApiReady?: (api: IJitsiMeetExternalApi) => void;
+
+    /**
+     * The callback for when the meeting is ready to be closed.
+     */
+    onReadyToClose?: () => void;
 
     /**
      * The parent node used by the IFrame.

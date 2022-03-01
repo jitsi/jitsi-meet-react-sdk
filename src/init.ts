@@ -1,7 +1,8 @@
+import { DEFAULT_DOMAIN } from './constants';
 import { JitsiMeetExternalApi } from './types';
 
 const loadExternalApi = async (
-        domain?: string
+        domain: string
 ): Promise<JitsiMeetExternalApi> => new Promise((resolve, reject) => {
     if (window.JitsiMeetExternalAPI) {
         return resolve(window.JitsiMeetExternalAPI);
@@ -26,7 +27,7 @@ let scriptPromise: Promise<JitsiMeetExternalApi>;
  * @param {string} domain - The domain of the external API
  * @returns {Promise<JitsiMeetExternalApi>} - the JitsiMeetExternalAPI or an error
  */
-export const fetchExternalApi = (domain?: string): Promise<JitsiMeetExternalApi> => {
+export const fetchExternalApi = (domain: string = DEFAULT_DOMAIN): Promise<JitsiMeetExternalApi> => {
     if (scriptPromise) {
         return scriptPromise;
     }

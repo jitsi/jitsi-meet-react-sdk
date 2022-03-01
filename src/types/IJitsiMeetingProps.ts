@@ -10,5 +10,5 @@ export default interface IJitsiMeetingProps extends IMeetingProps {
     /**
      * The domain used to build the conference URL.
      */
-    domain: string;
+    domain?: string;
 }

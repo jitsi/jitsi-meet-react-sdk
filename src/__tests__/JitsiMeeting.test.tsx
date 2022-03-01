@@ -6,6 +6,8 @@ import { DEFAULT_DOMAIN } from '../constants';
 import { JitsiMeeting } from '../index';
 import { IJitsiMeetExternalApi } from '../types';
 
+/* eslint-disable no-undef */
+
 describe('JitsiMeeting component', () => {
     it('should render correctly', () => {
         const props = {

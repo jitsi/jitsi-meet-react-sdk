@@ -1,7 +1,9 @@
-import { fetchExternalApi } from '..';
+import { fetchExternalApi } from '../init';
 
 const SUCCESS_DOMAIN = 'meet.jit.si';
 const ERROR_DOMAIN = 'error';
+
+/* eslint-disable no-undef */
 
 describe('fetchExternalApi module', () => {
 

@@ -1,7 +1,7 @@
 {
-    "name": "@jitsi/web-sdk",
-    "version": "0.2.0",
-    "description": "Web SDK for the Jitsi Meet IFrame",
+    "name": "@jitsi/react-sdk",
+    "version": "1.0.0",
+    "description": "React SDK for the Jitsi Meet IFrame",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "scripts": {
@@ -10,8 +10,7 @@
         "lint-fix": "npm run lint -- --fix",
         "test": "jest --config jestconfig.json",
         "watch": "watch 'npm run build' src",
-        "start-component-demo": "npm run build && cd ./examples/jitsiMeeting && npm i && npm start",
-        "start-fetch-demo": "npm run build && cd ./examples/fetchExternalApi && npm i && npm start"
+        "demo": "npm run build && cd ./example/jitsiMeeting && npm i && npm start"
     },
     "repository": {
         "type": "git",
@@ -31,6 +30,7 @@
     "devDependencies": {
         "@babel/core": "^7.15.8",
         "@babel/preset-typescript": "^7.15.0",
+        "@jitsi/eslint-config": "^4.1.1",
         "@types/enzyme": "^3.10.10",
         "@types/jest": "^27.0.2",
         "@types/node": "^16.11.7",
@@ -45,13 +45,12 @@
         "enzyme-adapter-react-16": "^1.15.6",
         "enzyme-to-json": "^3.6.2",
         "eslint": "^8.0.1",
-        "eslint-config-jitsi": "github:jitsi/eslint-config-jitsi",
         "eslint-plugin-import": "^2.25.2",
         "jest": "^27.3.1",
         "jest-cli": "^27.3.1",
         "ts-jest": "^27.0.7",
         "typescript": "^4.4.4",
-        "watch": "^1.0.2"
+        "watch": "^0.13.0"
     },
     "files": [
         "lib/**/*"

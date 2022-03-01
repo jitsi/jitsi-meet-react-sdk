@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { fetchExternalApi } from '..';
+import { DEFAULT_DOMAIN } from '../constants';
+import { fetchExternalApi } from '../init';
 import { IJitsiMeetExternalApi, IJitsiMeetingProps, JitsiMeetExternalApi } from '../types';
 import { generateComponentId } from '../utils';
 
@@ -21,7 +22,7 @@ import { generateComponentId } from '../utils';
   ```
  */
 const JitsiMeeting = ({
-    domain,
+    domain = DEFAULT_DOMAIN,
     roomName,
     configOverwrite,
     interfaceConfigOverwrite,
@@ -31,6 +32,7 @@ const JitsiMeeting = ({
     userInfo,
     spinner: Spinner,
     onApiReady,
+    onReadyToClose,
     getIFrameRef
 }: IJitsiMeetingProps) => {
     const [ componentId, setComponentId ] = useState<string>('');
@@ -63,13 +65,19 @@ const JitsiMeeting = ({
         });
         setLoading(false);
         if (apiRef.current) {
-            onApiReady(apiRef.current);
-            (getIFrameRef && meetingRef.current) && getIFrameRef(meetingRef.current);
+            typeof onApiReady === 'function' && onApiReady(apiRef.current);
+            apiRef.current.on('readyToClose', () => {
+                typeof onReadyToClose === 'function' && onReadyToClose();
+            });
+            if (meetingRef.current && typeof getIFrameRef === 'function') {
+                getIFrameRef(meetingRef.current);
+            }
         }
     }, [
         apiRef,
         meetingRef,
         onApiReady,
+        onReadyToClose,
         getIFrameRef,
         domain,
         roomName,
