@@ -2,14 +2,19 @@
  * Returns the complete room name
  *
  * @param {string} roomName
- * @param {string | undefined} tenant
+ * @param {string} tenant
  * @returns {string} the complete room name
  */
 export const getRoomName = (
-        roomName?: string,
+        roomName: string,
         tenant?: string
-): string | undefined => tenant ? `${tenant}/${roomName}` : roomName;
+): string => {
+    if (tenant) {
+        return `${tenant}/${roomName}`;
+    }
 
+    return roomName;
+};
 
 let instancesCounter = 0;
 

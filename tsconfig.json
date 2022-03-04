@@ -15,6 +15,6 @@
   "exclude": [
     "node_modules",
     "**/__tests__",
-    "examples"
+    "example"
   ]
 }
