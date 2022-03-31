@@ -55,15 +55,12 @@ const App = () => {
     const handleApiReady = apiObj => {
         apiRef.current = apiObj;
         apiRef.current.on('knockingParticipant', handleKnockingParticipant);
-        apiRef.current.addEventListeners({
-            // Listening to events from the external API
-            audioMuteStatusChanged: payload => handleAudioStatusChange(payload, 'audio'),
-            videoMuteStatusChanged: payload => handleAudioStatusChange(payload, 'video'),
-            raiseHandUpdated: printEventOutput,
-            tileViewChanged: printEventOutput,
-            chatUpdated: handleChatUpdates,
-            knockingParticipant: handleKnockingParticipant
-        });
+        apiRef.current.on('audioMuteStatusChanged', payload => handleAudioStatusChange(payload, 'audio'));
+        apiRef.current.on('videoMuteStatusChanged', payload => handleAudioStatusChange(payload, 'video'));
+        apiRef.current.on('raiseHandUpdated', printEventOutput);
+        apiRef.current.on('titleViewChanged', printEventOutput);
+        apiRef.current.on('chatUpdated', handleChatUpdates);
+        apiRef.current.on('knockingParticipant', handleKnockingParticipant);
     };
 
     const handleReadyToClose = () => {
