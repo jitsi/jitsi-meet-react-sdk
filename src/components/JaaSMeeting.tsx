@@ -1,6 +1,7 @@
-import { JAAS_DOMAIN } from '../constants';
+import { ReactElement } from 'react';
+
 import { IJaaSMeetingProps } from '../types';
-import { getRoomName } from '../utils';
+import { getJaaSDomain, getRoomName } from '../utils';
 
 import { JitsiMeeting } from '.';
 
@@ -8,8 +9,8 @@ import { JitsiMeeting } from '.';
  * Returns the JaaSMeeting Component with access to the 8x8.vc External API
  * to be used as-it-is in React projects
  *
- * @param {IJitsiMeetingProps} props the component's props
- * @returns {React.Component} the `JaaSMeeting` Component
+ * @param {IJaaSMeetingProps} props the component's props
+ * @returns {ReactElement} the `JaaSMeeting` Component
  * @example
   ```js
       <JaaSMeeting
@@ -23,10 +24,11 @@ import { JitsiMeeting } from '.';
 const JaaSMeeting = ({
     appId,
     roomName,
+    useStaging,
     ...rest
-}: IJaaSMeetingProps) => (
+}: IJaaSMeetingProps): ReactElement => (
     <JitsiMeeting
-        domain={JAAS_DOMAIN}
+        domain={getJaaSDomain(useStaging)}
         roomName={getRoomName(roomName, appId)}
         {...rest}
     />

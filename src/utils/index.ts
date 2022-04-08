@@ -1,3 +1,5 @@
+import { JAAS_PROD_DOMAIN, JAAS_STAGING_DOMAIN } from '../constants';
+
 /**
  * Returns the complete room name
  *
@@ -14,6 +16,20 @@ export const getRoomName = (
     }
 
     return roomName;
+};
+
+/**
+ * Returns the JaaS domain
+ *
+ * @param {boolean|undefined} useStaging
+ * @returns {string} the JaaS domain
+ */
+export const getJaaSDomain = (useStaging?: boolean): string => {
+    if (useStaging) {
+        return JAAS_STAGING_DOMAIN;
+    }
+
+    return JAAS_PROD_DOMAIN;
 };
 
 let instancesCounter = 0;

@@ -27,9 +27,22 @@ To be used with the `8x8.vc` domain as-it-is in React projects:
     roomName = { YOUR_ROOM_NAME }
 />
 ```
+
+...or with the `stage.8x8.vc` domain:
+```js
+<JaaSMeeting
+    appId = { YOUR_APP_ID }
+    roomName = { YOUR_ROOM_NAME }
+    useStaging = { true }
+/>
+```
+
 ##### Properties specific to the `JaasMeeting` component
 ###### `appId` 
 Required. Provides an isolated context and prefixes the room name.
+
+###### `useStaging`
+Optional. Tells whether to use the staging environment or not.
 
 ##### Common properties
 ###### `roomName`
