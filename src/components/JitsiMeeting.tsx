@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 
 import { DEFAULT_DOMAIN } from '../constants';
 import { fetchExternalApi } from '../init';
@@ -10,7 +10,7 @@ import { generateComponentId } from '../utils';
  * to be used as-it-is in React projects
  *
  * @param {IJitsiMeetingProps} props the component's props
- * @returns {React.Component} the `JitsiMeeting` Component
+ * @returns {ReactElement} the `JitsiMeeting` Component
  * @example
   ```js
     <JitsiMeeting
@@ -34,7 +34,7 @@ const JitsiMeeting = ({
     onApiReady,
     onReadyToClose,
     getIFrameRef
-}: IJitsiMeetingProps) => {
+}: IJitsiMeetingProps): ReactElement => {
     const [ componentId, setComponentId ] = useState<string>('');
     const [ loading, setLoading ] = useState(true);
     const [ apiLoaded, setApiLoaded ] = useState(false);

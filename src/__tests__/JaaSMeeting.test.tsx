@@ -26,9 +26,9 @@ describe('JaaSMeeting component', () => {
         expect(snapshot).toMatchSnapshot();
     });
 
-    it('should pass the correct props to the JitsiMeeting component', () => {
+    it('should pass the correct props to the JitsiMeeting component (prod)', () => {
         const props = {
-            roomName: 'TestingJaaSMeetingProps',
+            roomName: 'TestingJaaSMeetingProps-prod',
             appId: 'testAppId',
             onApiReady: (externalApi: IJitsiMeetExternalApi) => {
                 console.log(externalApi);
@@ -36,7 +36,19 @@ describe('JaaSMeeting component', () => {
         };
         const wrapper = shallow(<JaaSMeeting {...props} />);
 
-        expect(wrapper.find(JitsiMeeting).prop('roomName')).toBe('testAppId/TestingJaaSMeetingProps');
+        expect(wrapper.find(JitsiMeeting).prop('roomName')).toBe('testAppId/TestingJaaSMeetingProps-prod');
         expect(wrapper.find(JitsiMeeting).prop('domain')).toBe('8x8.vc');
+    });
+
+    it('should pass the correct props to the JitsiMeeting component (stage)', () => {
+        const props = {
+            roomName: 'TestingJaaSMeetingProps-stage',
+            appId: 'testAppId',
+            useStaging: true
+        };
+        const wrapper = shallow(<JaaSMeeting {...props} />);
+
+        expect(wrapper.find(JitsiMeeting).prop('roomName')).toBe('testAppId/TestingJaaSMeetingProps-stage');
+        expect(wrapper.find(JitsiMeeting).prop('domain')).toBe('stage.8x8.vc');
     });
 });
