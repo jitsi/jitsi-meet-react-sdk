@@ -1,6 +1,6 @@
 {
     "name": "@jitsi/react-sdk",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "React SDK for the Jitsi Meet IFrame",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
@@ -24,8 +24,8 @@
     },
     "homepage": "https://github.com/jitsi/jitsi-meet-web-sdk#readme",
     "peerDependencies": {
-        "react": "16 || 17",
-        "react-dom": "16 || 17"
+        "react": "16 || 17 || 18",
+        "react-dom": "16 || 17 || 18"
     },
     "devDependencies": {
         "@babel/core": "^7.15.8",
