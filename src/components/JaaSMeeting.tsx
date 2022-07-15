@@ -25,11 +25,13 @@ const JaaSMeeting = ({
     appId,
     roomName,
     useStaging,
+    release,
     ...rest
 }: IJaaSMeetingProps): ReactElement => (
     <JitsiMeeting
         domain={getJaaSDomain(useStaging)}
         roomName={getRoomName(roomName, appId)}
+        release={release}
         {...rest}
     />
 );

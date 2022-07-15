@@ -1,6 +1,6 @@
 {
     "name": "@jitsi/react-sdk",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "React SDK for the Jitsi Meet IFrame",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
@@ -10,7 +10,7 @@
         "lint-fix": "npm run lint -- --fix",
         "test": "jest --config jestconfig.json",
         "watch": "watch 'npm run build' src",
-        "demo": "npm run build && cd ./example/jitsiMeeting && npm i && npm start"
+        "demo": "npm run build && cd ./example && npm i && npm start"
     },
     "repository": {
         "type": "git",

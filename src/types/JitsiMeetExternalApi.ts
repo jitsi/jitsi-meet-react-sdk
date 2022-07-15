@@ -93,6 +93,12 @@ export type JitsiMeetExternalApi = {
             },
 
             /**
+             * The `stage.8x8.vc` or `8x8.vc` release version to test.
+             * Expects the following format: `release-${number}`.
+             */
+            release?: string,
+
+            /**
              * The HTML DOM Element where the IFrame is added as a child.
              */
             parentNode?: HTMLDivElement | null

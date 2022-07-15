@@ -30,6 +30,7 @@ const JitsiMeeting = ({
     invitees,
     devices,
     userInfo,
+    release,
     spinner: Spinner,
     onApiReady,
     onReadyToClose,
@@ -61,6 +62,7 @@ const JitsiMeeting = ({
             invitees,
             devices,
             userInfo,
+            release,
             parentNode: meetingRef.current
         });
         setLoading(false);

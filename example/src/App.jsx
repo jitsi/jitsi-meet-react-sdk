@@ -1,4 +1,4 @@
-import { JitsiMeeting } from '@jitsi/react-sdk';
+import { JaaSMeeting, JitsiMeeting } from '@jitsi/react-sdk';
 import React, { useRef, useState } from 'react';
 
 const App = () => {
@@ -43,6 +43,7 @@ const App = () => {
         iframeRef.style.border = '10px solid #3d3d3d';
         iframeRef.style.background = '#3d3d3d';
         iframeRef.style.height = '400px';
+        iframeRef.style.marginBottom = '20px';
     };
 
     const handleJitsiIFrameRef2 = iframeRef => {
@@ -50,6 +51,13 @@ const App = () => {
         iframeRef.style.border = '10px dashed #df486f';
         iframeRef.style.padding = '5px';
         iframeRef.style.height = '400px';
+    };
+
+    const handleJaaSIFrameRef = iframeRef => {
+        iframeRef.style.border = '10px solid #3d3d3d';
+        iframeRef.style.background = '#3d3d3d';
+        iframeRef.style.height = '400px';
+        iframeRef.style.marginBottom = '20px';
     };
 
     const handleApiReady = apiObj => {
@@ -194,6 +202,12 @@ const App = () => {
                 onApiReady = { externalApi => handleApiReady(externalApi) }
                 onReadyToClose = { handleReadyToClose }
                 getIFrameRef = { handleJitsiIFrameRef1 } />
+            <JaaSMeeting
+                roomName = { generateRoomName() }
+
+                // release = 'release-3110' // Update this with the version of interest.
+                useStaging = { true }
+                getIFrameRef = { handleJaaSIFrameRef } />
             {renderButtons()}
             {renderNewInstance()}
             {renderLog()}
