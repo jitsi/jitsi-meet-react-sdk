@@ -205,7 +205,11 @@ const App = () => {
             <JaaSMeeting
                 roomName = { generateRoomName() }
 
-                // release = 'release-3110' // Update this with the version of interest.
+                // Update this with the version of interest
+                // and avoid mixing up different domains and release versions
+                // on the same page at the same time, as only the first
+                // external api script will be loaded.
+                // release = '3446'
                 useStaging = { true }
                 getIFrameRef = { handleJaaSIFrameRef } />
             {renderButtons()}

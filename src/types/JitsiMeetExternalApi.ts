@@ -94,7 +94,7 @@ export type JitsiMeetExternalApi = {
 
             /**
              * The `stage.8x8.vc` or `8x8.vc` release version to test.
-             * Expects the following format: `release-${number}`.
+             * Expects the following format: `release-${string}`.
              */
             release?: string,
 
