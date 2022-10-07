@@ -1,4 +1,11 @@
-import { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
+import {
+    ReactElement,
+    useCallback,
+    useEffect,
+    useMemo,
+    useRef,
+    useState
+} from 'react';
 
 import { DEFAULT_DOMAIN } from '../constants';
 import { fetchExternalApi } from '../init';
@@ -36,16 +43,17 @@ const JitsiMeeting = ({
     onReadyToClose,
     getIFrameRef
 }: IJitsiMeetingProps): ReactElement => {
-    const [ componentId, setComponentId ] = useState<string>('');
     const [ loading, setLoading ] = useState(true);
     const [ apiLoaded, setApiLoaded ] = useState(false);
     const externalApi = useRef<JitsiMeetExternalApi>();
     const apiRef = useRef<IJitsiMeetExternalApi>();
     const meetingRef = useRef<HTMLDivElement>(null);
+    const componentId = useMemo(() =>
+        generateComponentId('jitsiMeeting')
+    , [ generateComponentId ]);
 
     useEffect(() => {
-        setComponentId(generateComponentId('jitsiMeeting'));
-        fetchExternalApi(domain)
+        fetchExternalApi(domain, release)
             .then((api: JitsiMeetExternalApi) => {
                 externalApi.current = api;
                 setApiLoaded(true);
@@ -62,7 +70,7 @@ const JitsiMeeting = ({
             invitees,
             devices,
             userInfo,
-            release,
+            ...release ? { release: `release-${release}` } : {},
             parentNode: meetingRef.current
         });
         setLoading(false);
