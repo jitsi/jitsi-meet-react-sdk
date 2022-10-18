@@ -19,6 +19,22 @@ export const getRoomName = (
 };
 
 /**
+ * Returns the appId or tenant value
+ *
+ * @param {string} roomName
+ * @returns {string|undefined}
+ */
+export const getAppId = (roomName: string): string | undefined => {
+    const roomParts = roomName.split('/');
+
+    if (roomParts.length <= 1) {
+        return;
+    }
+
+    return roomParts[0];
+}
+
+/**
  * Returns the JaaS domain
  *
  * @param {boolean|undefined} useStaging
