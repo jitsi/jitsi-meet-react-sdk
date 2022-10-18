@@ -94,7 +94,7 @@ Optional. Information regarding the devices used during the call.
 Optional. Details about the participant that started the meeting.
 
 ###### `release`
-Optional. Information regarding the `stage.8x8.vc` or `8x8.vc` release version.
+Optional. Information regarding the `stage.8x8.vc` or `8x8.vc` release version. Expects the following format: `release-1234`.
 
 ###### `spinner`
 Optional. Custom loading view while the IFrame is loading.
