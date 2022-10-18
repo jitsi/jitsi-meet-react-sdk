@@ -10,7 +10,7 @@ import {
 import { DEFAULT_DOMAIN } from '../constants';
 import { fetchExternalApi } from '../init';
 import { IJitsiMeetExternalApi, IJitsiMeetingProps, JitsiMeetExternalApi } from '../types';
-import { generateComponentId } from '../utils';
+import { generateComponentId, getAppId } from '../utils';
 
 /**
  * Returns the JitsiMeeting Component with access to a custom External API
@@ -53,7 +53,7 @@ const JitsiMeeting = ({
     , [ generateComponentId ]);
 
     useEffect(() => {
-        fetchExternalApi(domain, release)
+        fetchExternalApi(domain, release, getAppId(roomName))
             .then((api: JitsiMeetExternalApi) => {
                 externalApi.current = api;
                 setApiLoaded(true);
