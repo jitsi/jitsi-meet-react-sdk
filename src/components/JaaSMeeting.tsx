@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 
 import { IJaaSMeetingProps } from '../types';
-import { getJaaSDomain, getRoomName } from '../utils';
+import { getJaaSDomain } from '../utils';
 
 import { JitsiMeeting } from '.';
 
@@ -30,7 +30,8 @@ const JaaSMeeting = ({
 }: IJaaSMeetingProps): ReactElement => (
     <JitsiMeeting
         domain={getJaaSDomain(useStaging)}
-        roomName={getRoomName(roomName, appId)}
+        roomName={roomName}
+        appId={appId}
         release={release}
         {...rest}
     />

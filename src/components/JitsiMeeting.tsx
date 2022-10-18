@@ -10,7 +10,7 @@ import {
 import { DEFAULT_DOMAIN } from '../constants';
 import { fetchExternalApi } from '../init';
 import { IJitsiMeetExternalApi, IJitsiMeetingProps, JitsiMeetExternalApi } from '../types';
-import { generateComponentId } from '../utils';
+import { generateComponentId, getRoomName } from '../utils';
 
 /**
  * Returns the JitsiMeeting Component with access to a custom External API
@@ -22,6 +22,7 @@ import { generateComponentId } from '../utils';
   ```js
     <JitsiMeeting
         domain='meet.jit.si'
+        appId='exampleAppId'
         roomName: 'TestingJitsiMeetingComponent'
         spinner={CustomSpinner}
         onApiReady={(externalApi) => console.log(externalApi)}
@@ -30,6 +31,7 @@ import { generateComponentId } from '../utils';
  */
 const JitsiMeeting = ({
     domain = DEFAULT_DOMAIN,
+    appId,
     roomName,
     configOverwrite,
     interfaceConfigOverwrite,
@@ -63,7 +65,7 @@ const JitsiMeeting = ({
 
     const loadIFrame = useCallback((JitsiMeetExternalAPI: JitsiMeetExternalApi) => {
         apiRef.current = new JitsiMeetExternalAPI(domain, {
-            roomName,
+            roomName: getRoomName(roomName, appId),
             configOverwrite,
             interfaceConfigOverwrite,
             jwt,
@@ -90,6 +92,7 @@ const JitsiMeeting = ({
         onReadyToClose,
         getIFrameRef,
         domain,
+        appId,
         roomName,
         configOverwrite,
         interfaceConfigOverwrite,

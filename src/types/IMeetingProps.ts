@@ -8,6 +8,11 @@ import IJitsiMeetExternalApi from './IJitsiMeetExternalApi';
 export default interface IMeetingProps {
 
     /**
+     * The App ID that provides an isolated context and prefixes the room name.
+     */
+     appId?: string;
+
+    /**
      * The name of the room to join.
      */
     roomName: string;

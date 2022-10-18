@@ -38,7 +38,7 @@ To be used with the `8x8.vc` domain as-it-is in React projects:
 ```
 
 ##### Properties specific to the `JaasMeeting` component
-###### `appId` 
+###### `appId`
 Required. Provides an isolated context and prefixes the room name.
 
 ###### `useStaging`
@@ -47,6 +47,9 @@ Optional. Tells whether to use the staging environment or not.
 ##### Common properties
 ###### `roomName`
 Required. String used when joining the meeting.
+
+###### `appId`
+Optional. Provides an isolated context and prefixes the room name.
 
 ###### `getIFrameRef`
 Optional. Callback to retrieve the parent node of the IFrame for more control (e.g. styling).

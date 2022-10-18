@@ -1,5 +1,4 @@
 /* eslint-disable-next-line */
-import { JaaSMeeting } from '..';
 import IMeetingProps from './IMeetingProps';
 
 /**
