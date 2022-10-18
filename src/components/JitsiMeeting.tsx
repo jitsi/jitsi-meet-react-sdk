@@ -70,7 +70,7 @@ const JitsiMeeting = ({
             invitees,
             devices,
             userInfo,
-            ...release ? { release: `release-${release}` } : {},
+            release,
             parentNode: meetingRef.current
         });
         setLoading(false);

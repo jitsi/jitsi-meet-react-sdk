@@ -205,11 +205,12 @@ const App = () => {
             <JaaSMeeting
                 roomName = { generateRoomName() }
 
-                // Update this with the version of interest
+                // Update this with the `8x8.vc` or `stage.8x8.vc` version of interest
                 // and avoid mixing up different domains and release versions
                 // on the same page at the same time, as only the first
                 // external api script will be loaded.
-                // release = '3446'
+                // release = 'release-1234'
+
                 useStaging = { true }
                 getIFrameRef = { handleJaaSIFrameRef } />
             {renderButtons()}

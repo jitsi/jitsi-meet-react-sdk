@@ -10,7 +10,7 @@ const loadExternalApi = async (
     }
 
     const script: HTMLScriptElement = document.createElement('script');
-    const releaseParam: string = release ? `?release=release-${release}` : '';
+    const releaseParam: string = release ? `?release=${release}` : '';
 
     script.async = true;
     script.src = `https://${domain}/external_api.js${releaseParam}`;
@@ -30,7 +30,7 @@ let scriptPromise: Promise<JitsiMeetExternalApi>;
  * with mixed domains and release version at the same time.
  *
  * @param {string} domain - The domain of the external API
- * @param {string} release - The Jitsi Meet release
+ * @param {string} release - The Jitsi Meet release. Expected format: 'release-1234'
  * @returns {Promise<JitsiMeetExternalApi>} - The JitsiMeetExternalAPI or an error
  */
 export const fetchExternalApi = (
