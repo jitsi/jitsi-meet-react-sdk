@@ -195,7 +195,7 @@ const App = () => {
             <JitsiMeeting
                 roomName = { generateRoomName() }
                 spinner = { renderSpinner }
-                config = {{
+                configOverwrite = {{
                     subject: 'lalalala',
                     hideConferenceSubject: false
                 }}
