@@ -199,6 +199,7 @@ const App = () => {
                     subject: 'lalalala',
                     hideConferenceSubject: false
                 }}
+                lang = 'de'
                 onApiReady = { externalApi => handleApiReady(externalApi) }
                 onReadyToClose = { handleReadyToClose }
                 getIFrameRef = { handleJitsiIFrameRef1 } />

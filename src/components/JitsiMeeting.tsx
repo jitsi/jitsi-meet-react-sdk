@@ -38,6 +38,7 @@ const JitsiMeeting = ({
     devices,
     userInfo,
     release,
+    lang,
     spinner: Spinner,
     onApiReady,
     onReadyToClose,
@@ -71,6 +72,7 @@ const JitsiMeeting = ({
             devices,
             userInfo,
             release,
+            lang,
             parentNode: meetingRef.current
         });
         setLoading(false);
@@ -96,7 +98,9 @@ const JitsiMeeting = ({
         jwt,
         invitees,
         devices,
-        userInfo
+        userInfo,
+        release,
+        lang
     ]);
 
     useEffect(() => {
