@@ -72,6 +72,11 @@ export default interface IMeetingProps {
     };
 
     /**
+     * The default meeting language.
+     */
+    lang?: string;
+
+    /**
      * The `stage.8x8.vc` or `8x8.vc` release version to test.
      * Expects the following format: `release-1234`.
      */

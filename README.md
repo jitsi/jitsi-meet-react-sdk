@@ -93,6 +93,9 @@ Optional. Information regarding the devices used during the call.
 ###### `userInfo`
 Optional. Details about the participant that started the meeting.
 
+###### `lang`
+Optional. The default meeting language.
+
 ###### `release`
 Optional. Information regarding the `stage.8x8.vc` or `8x8.vc` release version. Expects the following format: `release-1234`.
 

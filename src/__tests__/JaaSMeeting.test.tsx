@@ -32,12 +32,14 @@ describe('JaaSMeeting component', () => {
             appId: 'testAppId',
             onApiReady: (externalApi: IJitsiMeetExternalApi) => {
                 console.log(externalApi);
-            }
+            },
+            lang: 'es'
         };
         const wrapper = shallow(<JaaSMeeting {...props} />);
 
         expect(wrapper.find(JitsiMeeting).prop('roomName')).toBe('testAppId/TestingJaaSMeetingProps-prod');
         expect(wrapper.find(JitsiMeeting).prop('domain')).toBe('8x8.vc');
+        expect(wrapper.find(JitsiMeeting).prop('lang')).toBe('es');
     });
 
     it('should pass the correct props to the JitsiMeeting component (stage)', () => {
