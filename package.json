@@ -1,6 +1,6 @@
 {
-    "name": "@jitsi/react-sdk",
-    "version": "1.4.0",
+    "name": "@jruvinski/jitsi-meet-react-sdk",
+    "version": "1.4.1",
     "description": "React SDK for the Jitsi Meet IFrame",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
@@ -14,7 +14,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/jitsi/jitsi-meet-web-sdk.git"
+        "url": "git+https://github.com/jruvinski/jitsi-meet-react-sdk.git"
     },
     "keywords": [],
     "author": "",

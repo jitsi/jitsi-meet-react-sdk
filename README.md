@@ -1,3 +1,5 @@
+# Fork only for add React 19
+
 # Jitsi Meet React SDK
 The Jitsi Meet React SDK provides the same user experience as the [Jitsi Meet](https://github.com/jitsi/jitsi-meet) app, in a customizable way which you can embed in your apps.
 
