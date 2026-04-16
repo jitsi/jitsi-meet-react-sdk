@@ -1,6 +1,6 @@
 {
     "name": "@jitsi/react-sdk",
-    "version": "1.4.4",
+    "version": "1.4.5",
     "description": "React SDK for the Jitsi Meet IFrame",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
