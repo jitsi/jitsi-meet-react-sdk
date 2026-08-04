@@ -22,6 +22,14 @@ jobs:
       - run: npm run build
       - name: "Automated Release"
         uses: "phips28/gh-action-bump-version@215e27a882516826c59df7f09da8c67d5f375cbd"  # master
+        with:
+          # The action's default word lists substring-match 'major'/'minor'/
+          # 'feat' anywhere in the commit message — dependabot commit footers
+          # escalated jitsi/js-utils from 6.3.2 to 12.0.0 that way, and any
+          # prose containing e.g. 'feature' would do the same here. React
+          # only to deliberate markers.
+          major-wording: 'BREAKING CHANGE'
+          minor-wording: 'feat:,feat('
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: npm publish --access public
