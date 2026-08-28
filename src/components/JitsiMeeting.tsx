@@ -73,9 +73,9 @@ const JitsiMeeting = ({
             userInfo,
             release,
             lang,
-            parentNode: meetingRef.current
+            parentNode: meetingRef.current,
+            onload: () => setLoading(false)
         });
-        setLoading(false);
         if (apiRef.current) {
             typeof onApiReady === 'function' && onApiReady(apiRef.current);
             apiRef.current.on('readyToClose', () => {
@@ -104,23 +104,24 @@ const JitsiMeeting = ({
     ]);
 
     useEffect(() => {
-        if (apiLoaded && !apiRef.current) {
-            if (externalApi.current) {
-                loadIFrame(externalApi.current);
-            }
+        if (!apiLoaded || apiRef.current || !externalApi.current) {
+            return;
         }
+
+        loadIFrame(externalApi.current);
     }, [ apiLoaded, loadIFrame ]);
 
     const renderLoadingSpinner = useCallback(() => {
         if (!Spinner) {
             return null;
         }
-        if (!loading || apiRef.current) {
+
+        if (!loading) {
             return null;
         }
 
         return <Spinner />;
-    }, [ Spinner, apiRef.current ]);
+    }, [ Spinner, loading ]);
 
     return (
         <>
